@@ -8,7 +8,7 @@ class App extends Component {
     super(props)
     this.state = {
       open: false,
-      title: 'Home'
+      title: 'Subreddits'
     }
   }
 

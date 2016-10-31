@@ -14,7 +14,7 @@ import './index.css'
 
 injectTapEventPlugin()
 
-const store = createStore(e => e)
+const store = createStore(e => e, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const Root = () => (
   <MuiThemeProvider>
