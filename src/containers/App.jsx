@@ -12,10 +12,7 @@ class App extends Component {
     }
   }
 
-  handleToggle = () => {
-    console.log('clicked')
-    this.setState({open: !this.state.open})
-  }
+  handleToggle = () =>   this.setState({open: !this.state.open})
 
   setTitle = title => this.setState({title})
 
