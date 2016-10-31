@@ -3,3 +3,22 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.subHeader {
+    font-size: 25px;
+    padding: 0 16px;
+    line-height: 64px;
+    color: #fff;
+    background: dodgerblue;
+}
+
+.link {
+    display: block;
+    transition: .3s;
+    text-decoration: none;
+}
+
+.link.active {
+    background-color: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
