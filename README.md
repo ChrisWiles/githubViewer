@@ -14,9 +14,10 @@ See Live [Reddit Viewer](https://slider-puzzle.herokuapp.com/)
 * [Material UI](http://www.material-ui.com/) - Google's material design UI components built with React.
 * [graphqlhub](https://www.graphqlhub.com/) - Query popular APIs using GraphQL in your browser
 * [GraphQLSchema](https://www.npmjs.com/package/graphql-schema) - Create GraphQL schemas with a fluent/chainable interface
-
+* [Reddit API](https://www.reddit.com/dev/api/) - Reddit
 If the user leaves the application and returns later they should be able to see the see were they last were at
 
+* use [graphqlhub](https://www.graphqlhub.com/) and [apollo](http://docs.apollostack.com/apollo-client/) to query the Github api and populate data.
 ## Installation
 
 Requires [Node.js](https://nodejs.org/) v6+ to run.
