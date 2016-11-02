@@ -15,8 +15,8 @@ const SlideDrawer = ({handleToggle, open, setTitle}) => (
       open={open}
       onRequestChange={e => handleToggle(e)}>
 
-      <div className='subHeader'>Type a subreddit name</div>
-      <SubRedditSearchBar/>
+      {/* <div className='subHeader'>Type a subreddit name</div> */}
+      <SubRedditSearchBar className='subHeader'/>
       <IndexLink to="/" className='link' activeClassName="active" onTouchTap={handleToggle}>
         <ListItem primaryText="Subreddits" leftIcon={<Home/>} onTouchTap={e => setTitle('Subreddits')}/>
       </IndexLink>
