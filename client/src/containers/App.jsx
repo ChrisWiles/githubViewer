@@ -5,8 +5,6 @@ import SlideDrawer from '../components/SlideDrawer'
 
 import axios from 'axios'
 
-
-
 let query = `{
   user(username: "kn0thing") {
     username
@@ -27,14 +25,8 @@ let query = `{
   }
 }`
 
-fetch(`http://localhost:3001/reddit`, {
-    accept: 'application/json',
-  }).then(a => console.log(a))
-    .catch(e => console.log(e))
-  
-axios(`/reddit`)
-  .then(a => console.log(a))
-  .catch(e => console.log(e))
+axios.post('/reddit', {query}).then(a => console.log(a))
+
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +37,7 @@ class App extends Component {
     }
   }
 
-  handleToggle = () =>   this.setState({open: !this.state.open})
+  handleToggle = () => this.setState({open: !this.state.open})
 
   setTitle = title => this.setState({title})
 

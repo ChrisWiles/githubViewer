@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-
-
 let query = `{
   user(username: "kn0thing") {
     username
@@ -21,4 +19,5 @@ let query = `{
     }
   }
 }`
-axios(query).then(a => console.log(a))
+
+axios.post('/reddit', {query}).then(a => console.log(a))
