@@ -1,8 +1,16 @@
-const express = require('express')
+import { Reddit } from 'graphqlhub-schemas'
+import { GraphQLSchema, graphql } from 'graphql'
+import express from 'express'
+import morgan from 'morgan'
+import bodyParser from 'body-parser'
+
 const app = express()
+app.use(bodyParser.json())
+app.use(morgan("dev"))
+
 
 app.set('port', (process.env.PORT || 3001))
-console.log(process.env.PORT)
+
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
@@ -14,43 +22,17 @@ app.use(function(req, res, next) {
   next()
 })
 
-import { Reddit } from 'graphqlhub-schemas'
-import { GraphQLSchema, graphql } from 'graphql'
+
 
 let schema = new GraphQLSchema({
   query: Reddit.QueryObjectType
 })
-let query = `{
-  user(username: "kn0thing") {
-    username
-    commentKarma
-    createdISO
-  }
-  subreddit(name: "movies"){
-    newListings(limit: 2) {
-      title
-      comments {
-        body
-        author {
-          username
-          commentKarma
-        }
-      }
-    }
-  }
-}`
-app.get('/reddit', (req, res) => {
- //  const param = req.query.q
- //
- // if (!param) {
- //   res.json({
- //     error: 'Missing required parameter `q`',
- //   })
- //   return
- // }
- graphql(schema, query)
-   .then(data => res.send(data))
-   .catch(err => console.log(err))
+
+app.post('/reddit', (req, res) => {
+  console.log(req.body)
+  graphql(schema, req.body.query)
+    .then(obj => res.send(obj.data))
+    .catch(err => console.log(err))
 })
 
 app.listen(app.get('port'), () => {
