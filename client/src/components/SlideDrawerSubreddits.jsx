@@ -1,15 +1,15 @@
 import React, {PropTypes} from 'react'
 import MenuItem from 'material-ui/MenuItem'
 
-const SlideDrawerSubreddits = (props) => (
+const SlideDrawerMenu = (props) => (
   <div>
-    <MenuItem>Subreddit</MenuItem>
-    <MenuItem>Subreddit 2</MenuItem>
+    <MenuItem>one</MenuItem>
+    <MenuItem>two</MenuItem>
   </div>
 )
 
-SlideDrawerSubreddits.propTypes = {
+SlideDrawerMenu.propTypes = {
   subreddit: PropTypes.string
 }
 
-export default SlideDrawerSubreddits
+export default SlideDrawerMenu

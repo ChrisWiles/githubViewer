@@ -1,5 +1,3 @@
-import { Reddit } from 'graphqlhub-schemas'
-import { GraphQLSchema, graphql } from 'graphql'
 import express from 'express'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
@@ -23,16 +21,11 @@ app.use(function(req, res, next) {
 })
 
 
-
-let schema = new GraphQLSchema({
-  query: Reddit.QueryObjectType
-})
-
 app.post('/reddit', (req, res) => {
-  console.log(req.body)
-  graphql(schema, req.body.query)
-    .then(obj => res.send(obj.data))
-    .catch(err => console.log(err))
+  // console.log(req.body)
+  // graphql(schema, req.body.query)
+  //   .then(obj => res.send(obj.data))
+  //   .catch(err => console.log(err))
 })
 
 app.listen(app.get('port'), () => {
