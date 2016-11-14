@@ -7,7 +7,7 @@ import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 
 const GET_REPO_INFO = gql `
-  query GetRepositoryIssues($name: String!, $login: String!) {
+  query GetRepoInfo($name: String!, $login: String!) {
     repositoryOwner(login: $login) {
       repository(name: $name) {
         stargazers {
@@ -15,6 +15,26 @@ const GET_REPO_INFO = gql `
         }
         watchers {
           totalCount
+        }
+        createdAt
+        description
+        url
+        commitComments(first: 10) {
+          edges {
+            node {
+              author {
+                avatarURL
+                name
+              }
+              body
+              commit {
+                message
+  							committer {
+                  date
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -40,11 +60,7 @@ const withInfo = graphql(GET_REPO_INFO, {
     if (data.error) {
       return { hasErrors: true }
     }
-    const {stargazers, watchers} = data.repositoryOwner.repository
-    return {
-      stargazers,
-      watchers
-    }
+    return {data}
   }
 })
 
@@ -57,8 +73,8 @@ class App extends Component {
     }
   }
 
-  componentWillReceiveProps({stargazers, watchers}) {
-    console.log(stargazers, watchers)
+  componentWillReceiveProps(props) {
+    console.log(props.data.repositoryOwner.repository)
   }
 
   handleToggle = () => this.setState({open: !this.state.open})
@@ -79,10 +95,10 @@ class App extends Component {
   }
 }
 
-//const AppWithInfo = withInfo(App)
+const AppWithInfo = withInfo(App)
 const mapStateToProps = (state) => {
   console.log(state)
   return state
 }
 
-export default connect(withInfo)(App)
+export default connect(mapStateToProps)(AppWithInfo)
