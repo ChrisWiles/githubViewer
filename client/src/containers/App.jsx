@@ -40,8 +40,11 @@ const withInfo = graphql(GET_REPO_INFO, {
     if (data.error) {
       return { hasErrors: true }
     }
-
-    return {data}
+    const {stargazers, watchers} = data.repositoryOwner.repository
+    return {
+      stargazers,
+      watchers
+    }
   }
 })
 
@@ -50,12 +53,12 @@ class App extends Component {
     super(props)
     this.state = {
       open: false,
-      title: 'GitHub'
+      title: ''
     }
   }
 
-  componentWillReceiveProps({data}) {
-    console.log(data)
+  componentWillReceiveProps({stargazers, watchers}) {
+    console.log(stargazers, watchers)
   }
 
   handleToggle = () => this.setState({open: !this.state.open})
@@ -76,4 +79,10 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(withInfo(App))
+//const AppWithInfo = withInfo(App)
+const mapStateToProps = (state) => {
+  console.log(state)
+  return state
+}
+
+export default connect(withInfo)(App)
