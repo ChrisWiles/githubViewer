@@ -35,6 +35,11 @@ See Live [Github Viewer](https://Github-Viewer.herokuapp.com/)
 - [apollo](http://docs.apollostack.com/apollo-client/) - A fully-featured caching GraphQL client for any server or UI framework
 - [foreman](https://github.com/strongloop/node-foreman) - Foreman is a manager for Procfile-based applications. Its aim is to abstract away the details of the Procfile format, and allow you to either run your application directly or export it to some other process management format.
 
+http://dev.apollodata.com/react/redux.html
+https://dev-blog.apollodata.com/apollo-client-graphql-with-react-and-redux-49b35d0f2641#.4ijzk0975
+https://blog.callstack.io/how-to-write-amazing-react-native-applications-with-apollo-react-4dabeec6b317#.1oxx29uzz
+
+
 ## Installation
 
 Requires [Node.js](https://nodejs.org/) v6+ to run.

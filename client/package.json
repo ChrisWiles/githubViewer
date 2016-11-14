@@ -1,5 +1,5 @@
 {
-  "name": "redditViewer",
+  "name": "GitHubViewer",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3100/",
@@ -12,9 +12,14 @@
     "react-tap-event-plugin": "^1.0.0"
   },
   "dependencies": {
+    "apollo-client": "^0.5.2",
     "axios": "^0.15.2",
+    "base-64": "^0.1.0",
+    "graphql-tag": "^0.1.16",
     "material-ui": "^0.15.1",
+    "passport-github": "^1.1.0",
     "react": "^15.3.2",
+    "react-apollo": "^0.6.0",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^3.0.0",
