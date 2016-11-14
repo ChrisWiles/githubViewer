@@ -38,7 +38,7 @@ See Live [Github Viewer](https://Github-Viewer.herokuapp.com/)
 http://dev.apollodata.com/react/redux.html
 https://dev-blog.apollodata.com/apollo-client-graphql-with-react-and-redux-49b35d0f2641#.4ijzk0975
 https://blog.callstack.io/how-to-write-amazing-react-native-applications-with-apollo-react-4dabeec6b317#.1oxx29uzz
-
+https://dev-blog.apollodata.com/seamless-integration-for-graphql-and-react-6ffc0ad3fead#.jfynopekp
 
 ## Installation
 

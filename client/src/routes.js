@@ -2,6 +2,7 @@ import React from 'react'
 import {Route} from 'react-router'
 
 import App from './containers/App'
+// import Home from './components/Home'
 
 export default (
   <Route path="/" component={App}>
@@ -9,6 +10,6 @@ export default (
     {/* <IndexRoute component={Home}/>
     <Route path="projects" component={Projects}/>
     <Route path="about" component={About}/>
-    <Route path="info" component={Info}/> */}
+    <Route path="/:org/:repoName" component={Repo}/> */}
   </Route>
 )

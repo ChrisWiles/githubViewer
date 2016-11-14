@@ -7,12 +7,14 @@ import {username, password} from './config'
 
 
 // Global.Auth
-let TOKEN = null
+export let TOKEN = null
 
 login(username, password).then(token => {
   console.log('GitHub Token:', token)
   TOKEN = token
 })
+
+
 // Global.Apollo
 const URI = {uri: 'https://api.github.com/graphql'}
 const networkInterface = createNetworkInterface(URI)
@@ -31,6 +33,4 @@ networkInterface.use([
   }
 ])
 
-const client = new ApolloClient({networkInterface})
-
-export default client
+export const client = new ApolloClient({networkInterface})
