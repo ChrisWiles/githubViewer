@@ -10,7 +10,6 @@ import {username, password} from './config'
 export let TOKEN = null
 
 login(username, password).then(token => {
-  console.log('GitHub Token:', token)
   TOKEN = token
 })
 
