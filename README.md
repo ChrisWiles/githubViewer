@@ -21,6 +21,27 @@ See Live [Github Viewer](https://Github-Viewer.herokuapp.com/)
 
 * If the user leaves the application and returns later they should be able to see the repositories as they were the last time they visited.
 
+App Bar
+  - Search repositories
+    - move to Repository Page
+
+Home Page
+  - Featured (Repository Page)
+
+Repository Page - Name, Stars, commit messages
+  - React router change url 
+  - typing url should go to page
+
+
+Favorites List (Side Bar)
+  - Remove favorites
+  - Click to go to (Repository Page)
+
+
+Author Info page
+  - Name, avatar, bio, number of followers, signup date
+
+
 ## Tech
 
 - [React](https://facebook.github.io/react/docs/getting-started.html) - Open-source JavaScript library providing a view for data rendered as HTML
@@ -50,5 +71,6 @@ Install the dependencies and devDependencies and start the server.
 $ npm install
 $ npm start
 ```
+
 
 ![gif](http://i.imgur.com/chriswiles.gif)
