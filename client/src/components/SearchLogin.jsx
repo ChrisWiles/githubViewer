@@ -4,60 +4,66 @@ import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
 
-
+// Type github login...
+// Searching for Repos...
+// Found x repos
 class SearchLogin extends Component {
   state = {
     text: ''
   }
 
-  handleChange = e => this.setState({text: e.target.value})
+  handleChange = (e) => this.setState({text: e.target.value})
 
-  handleSubmit = e => {
-    console.log(this.state.text)
-    this.props.requestReposNames(this.state.text) // redux action
+  handleSubmit = () => {
+    this.props.requestReposNames(this.state.text)
     this.setState({text:''})
+  }
+
+  handleReset = () => this.props.resetSearch()
+
+  renderSearch() {
+    if(this.props.repos.length) {
+      return (
+        <div>
+          <AutoComplete
+            floatingLabelText={`Found ${this.props.totalCount} repos`}
+            filter={AutoComplete.fuzzyFilter}
+            dataSource={this.props.repos}
+            maxSearchResults={5}
+          />
+          {/* call redux fumction to reset search */}
+          <FlatButton label="New Search" onTouchTap={this.handleReset}/>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <TextField
+            floatingLabelText="Search Github Accounts"
+            value={this.state.text}
+            onChange={this.handleChange}
+          />
+          <FlatButton label="search" onTouchTap={this.handleSubmit}/>
+        </div>
+      )
+    }
   }
 
   render() {
     console.log(this.props)
     return (
       <div>
-        <TextField
-          hintText="Github Account"
-          floatingLabelText="Github Account"
-          value={this.state.text}
-          onChange={this.handleChange}
-        />
-        <FlatButton label="search" onTouchTap={this.handleSubmit}/>
+        {this.renderSearch()}
       </div>
     )
   }
 }
 
 
-// should list all repos for account
-const SearchBar = ({edges, totalCount}) => {
-  const repoNames = repos => {
-    return repos ? repos.map(repo => repo.node.name) : []
-  }
-
-  return (
-    <AutoComplete
-      floatingLabelText="Type a repo name"
-      filter={AutoComplete.fuzzyFilter}
-      dataSource={repoNames(edges)}
-      maxSearchResults={5}
-    />
-  )
+SearchLogin.propTypes = {
+  requestReposNames: PropTypes.func.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  repos: PropTypes.array.isRequired
 }
 
-// SearchBar.propTypes = {
-//   edges: PropTypes.array,
-//   totalCount: PropTypes.number
-// }
-
 export default SearchLogin
-
-// Type github login...
-// Searching for Repos...
-// Found x repos

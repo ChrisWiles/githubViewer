@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {REPO_NAME, REPO_OWNER} from '../constants/actionTypes'
+import {REPO_NAME, REPO_OWNER, RESET_SEARCH} from '../constants/actionTypes'
 
 /*
   Things you should never do inside a reducer
@@ -10,8 +10,12 @@ import {REPO_NAME, REPO_OWNER} from '../constants/actionTypes'
 
 // Combines multiple reducers into a single reducing function with each reducer as a
 // key/value pair. Can then be passed to createStore().
+const initialState = {
+  repos: [],
+  totalCount: 0
+}
 
-function repos(state = {repos: [], totalCount: 0}, action) {
+function repos(state = initialState, action) {
 
   const repoNames = repos => repos.map(repo => repo.node.name)
 
@@ -21,6 +25,8 @@ function repos(state = {repos: [], totalCount: 0}, action) {
       return {repos: repoNames(edges), totalCount}
     case REPO_OWNER:
       return action.payload.data
+    case RESET_SEARCH:
+      return initialState
     default:
       return state
   }
