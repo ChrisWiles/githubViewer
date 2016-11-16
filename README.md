@@ -29,7 +29,7 @@ Home Page
   - Featured (Repository Page)
 
 Repository Page - Name, Stars, commit messages
-  - React router change url 
+  - React router change url
   - typing url should go to page
 
 
@@ -49,10 +49,8 @@ Author Info page
 - [React Router](https://github.com/ReactTraining/react-router/tree/master/docs) - React Router is a complete routing library for React. React Router keeps your UI in sync with the URL
 - [Heroku](https://devcenter.heroku.com/categories/reference) - Create, deploy, and manage apps in the cloud
 - [Material UI](http://www.material-ui.com/) - Google's material design UI components built with React.
-- [Github API](https://developer.github.com/v3/) - Api Documentation
 - [GitHub GraphQL API](https://developer.github.com/early-access/graphql/) - Api Documentation
 - [GraphQL](http://graphql.org/) - GraphQL is a new way to think about building and querying APIs. Rather than construct several REST requests to fetch data that you're interested in, you can often make a single call to fetch the information you need.
-- [graphqlhub](https://www.graphqlhub.com/) - Query popular APIs using GraphQL in your browser
 - [apollo](http://docs.apollostack.com/apollo-client/) - A fully-featured caching GraphQL client for any server or UI framework
 - [foreman](https://github.com/strongloop/node-foreman) - Foreman is a manager for Procfile-based applications. Its aim is to abstract away the details of the Procfile format, and allow you to either run your application directly or export it to some other process management format.
 

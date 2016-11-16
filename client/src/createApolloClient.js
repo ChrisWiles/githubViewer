@@ -1,20 +1,6 @@
-// Apollo
 import ApolloClient, {createNetworkInterface} from 'apollo-client'
+import {TOKEN} from './actionCreators/loginActions'
 
-// Auth
-import {login} from './githubLogin'
-import {username, password} from './config'
-
-
-// Global.Auth
-export let TOKEN = null
-
-login(username, password).then(token => {
-  TOKEN = token
-})
-
-
-// Global.Apollo
 const URI = {uri: 'https://api.github.com/graphql'}
 const networkInterface = createNetworkInterface(URI)
 

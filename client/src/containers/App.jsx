@@ -3,30 +3,32 @@ import {connect} from 'react-redux'
 
 import NavBar from '../components/NavBar'
 import SlideDrawer from '../components/SlideDrawer'
-import SmartSearchLogin from './SmartSearchBar'
 
+import {requestLogin} from '../actionCreators/loginActions'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       open: false,
-      title: ''
+      title: '',
+      isLogin: false
     }
+    this.props.requestLogin()
   }
 
-  componentWillReceiveProps(props) {}
-
   handleToggle = () => this.setState({open: !this.state.open})
+  toggleLogin = () => this.setState({isLogin: !this.state.isLogin})
 
   setTitle = title => this.setState({title})
 
   render() {
+
     const {title, open} = this.state
     return (
       <div>
-        {/* <NavBar handleToggle={this.handleToggle} title={title}/> */}
-        <SmartSearchLogin/>
+        <NavBar handleToggle={this.handleToggle} title={title} toggleLogin={this.toggleLogin} isLogin={this.state.isLogin}/>
+
         <SlideDrawer handleToggle={this.handleToggle} open={open} setTitle={this.setTitle}/>
         {/* child component will be rendered here */}
         {this.props.children}
@@ -36,11 +38,13 @@ class App extends Component {
   }
 }
 
-//const AppWithInfo = withInfo(App)
 const mapStateToProps = (state) => {
-  console.log(state)
-  return state
+  // console.log({...state.repos})
+  return {...state.login}
 }
 
-//export default connect(mapStateToProps)(AppWithInfo)
-export default App
+export default connect(
+  mapStateToProps, {
+    requestLogin
+  }
+)(App)

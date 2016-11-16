@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {requestReposNames, resetSearch, requestRepoInfo} from '../actionCreators'
+import {requestReposNames, resetSearch, requestRepoInfo} from '../actionCreators/repoActions'
 import SearchLogin from '../components/SearchLogin'
 
 const mapStateToProps = (state) => {
