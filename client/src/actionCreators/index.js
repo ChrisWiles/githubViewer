@@ -29,9 +29,9 @@ export const requestReposNames = (login) => {
   }
 }
 
-export const requestRepoInfo = ({login, name}) => {
+export const requestRepoInfo = (login, name) => {
   return dispatch => {
-    dispatch({type: REPO_NAME_REQUEST})
+    dispatch({type: REPO_NAME_REQUEST, name})
     return client.query(getRepoInfoByName({login, name}))
       .then(data => dispatch({type: REPO_NAME_SUCCESS, payload: data}))
       .catch(err => dispatch({type: REPO_NAME_FAILURE, err})

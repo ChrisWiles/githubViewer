@@ -7,8 +7,7 @@ import {
   REPO_OWNER_REQUEST,
   REPO_OWNER_SUCCESS,
   REPO_OWNER_FAILURE,
-  RESET_SEARCH,
-  RESET_ERROR_MESSAGE
+  RESET_SEARCH
 } from '../constants/actionTypes'
 
 /*
@@ -23,8 +22,9 @@ const initialState = {
   totalCount: 0,
   repoSearchLoading: false,
   repoSearchFailed: false,
-  repoLogin: null,
-  repoName: null
+  repoOwner: '',
+  repoName: '',
+  repoInfo: {}
 }
 
 function repos(state = initialState, action) {
@@ -36,7 +36,8 @@ function repos(state = initialState, action) {
       return {
         ...state,
         repoSearchLoading: true,
-        repoSearchFailed: false
+        repoSearchFailed: false,
+        repoOwner: action.login
       }
     case REPO_OWNER_SUCCESS:
       let {edges, totalCount} = action.payload.data.repositoryOwner.repositories
@@ -53,11 +54,20 @@ function repos(state = initialState, action) {
         repoSearchFailed: true
       }
     case REPO_NAME_REQUEST:
-      return action.payload.data
+      return {
+        ...state,
+        repoName: action.name
+      }
     case REPO_NAME_SUCCESS:
-      return state
+      return {
+        ...state,
+        repoInfo: action.payload.data.repositoryOwner.repository
+      }
     case REPO_NAME_FAILURE:
-      return state
+      return {
+        ...state,
+        repoName: ''
+      }
     case RESET_SEARCH:
       return initialState
     default:

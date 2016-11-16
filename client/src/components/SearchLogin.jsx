@@ -17,6 +17,11 @@ class SearchLogin extends Component {
 
   handleReset = () => this.props.resetSearch()
 
+  handleRequest = (repoName) => {
+    const {requestRepoInfo, repoOwner} = this.props
+    requestRepoInfo(repoOwner, repoName)
+  }
+
   generateLabel() {
     if (this.props.repoSearchFailed) {
       return 'Search Failed, please try again'
@@ -29,6 +34,8 @@ class SearchLogin extends Component {
     }
   }
 
+
+
   renderSearch() {
     const {repos, totalCount} = this.props
 
@@ -40,6 +47,7 @@ class SearchLogin extends Component {
             filter={AutoComplete.fuzzyFilter}
             dataSource={repos}
             maxSearchResults={5}
+            onNewRequest={this.handleRequest}
           />
           <FlatButton label="New Search" onTouchTap={this.handleReset}/>
         </div>
@@ -69,10 +77,14 @@ class SearchLogin extends Component {
 
 SearchLogin.propTypes = {
   requestReposNames: PropTypes.func.isRequired,
+  requestRepoInfo: PropTypes.func.isRequired,
   totalCount: PropTypes.number.isRequired,
   repos: PropTypes.array.isRequired,
   repoSearchLoading: PropTypes.bool.isRequired,
-  repoSearchFailed: PropTypes.bool.isRequired
+  repoSearchFailed: PropTypes.bool.isRequired,
+  repoOwner: PropTypes.string.isRequired,
+  repoName: PropTypes.string.isRequired,
+  repoInfo: PropTypes.object.isRequired
 }
 
 export default SearchLogin
