@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {requestReposNames, resetSearch, requestRepoInfo} from '../actionCreators/repoActions'
-import SearchLogin from '../components/SearchLogin'
+import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = (state) => {
   // console.log({...state.repos})
@@ -13,4 +13,4 @@ export default connect(
     resetSearch,
     requestRepoInfo
   }
-)(SearchLogin)
+)(SearchBar)

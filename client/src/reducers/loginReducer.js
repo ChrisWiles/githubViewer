@@ -8,7 +8,9 @@ import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../constants/actionTy
 */
 
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  loginFailure: false,
+  isLoggingIn: false
 }
 
 function login(state = initialState, action) {
@@ -16,15 +18,21 @@ function login(state = initialState, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
-        ...state
+        ...state,
+        isLoggingIn: true,
+        loginFailure: false
       }
     case LOGIN_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: true
       }
     case LOGIN_FAILURE:
       return {
-        ...state
+        ...state,
+        isLoggingIn: false,
+        loginFailure: true
       }
     default:
       return state

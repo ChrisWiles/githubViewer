@@ -3,7 +3,7 @@ import AutoComplete from 'material-ui/AutoComplete'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
-class SearchLogin extends Component {
+class SearchBar extends Component {
   state = {
     text: ''
   }
@@ -75,7 +75,7 @@ class SearchLogin extends Component {
   }
 }
 
-SearchLogin.propTypes = {
+SearchBar.propTypes = {
   requestReposNames: PropTypes.func.isRequired,
   requestRepoInfo: PropTypes.func.isRequired,
   totalCount: PropTypes.number.isRequired,
@@ -87,4 +87,4 @@ SearchLogin.propTypes = {
   repoInfo: PropTypes.object.isRequired
 }
 
-export default SearchLogin
+export default SearchBar
