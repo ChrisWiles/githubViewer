@@ -3,9 +3,20 @@ import AutoComplete from 'material-ui/AutoComplete'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
+import {browserHistory} from 'react-router'
+
 class SearchBar extends Component {
   state = {
     text: ''
+  }
+
+  componentWillReceiveProps({repoName, repoOwner, repoInfo}) {
+    console.log(repoName, repoOwner, repoInfo)
+    if(repoInfo.commits) {
+      const url = `/${repoOwner}/${repoName}`
+      // route to page
+      browserHistory.push(url)
+    }
   }
 
   handleChange = (e) => this.setState({text: e.target.value})
@@ -20,6 +31,7 @@ class SearchBar extends Component {
   handleRequest = (repoName) => {
     const {requestRepoInfo, repoOwner} = this.props
     requestRepoInfo(repoOwner, repoName)
+
   }
 
   generateLabel() {
