@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import NavBar from './NavBar'
 import SlideDrawer from './SlideDrawer'
 
@@ -17,7 +17,7 @@ class App extends Component {
 
   handleToggle = () => this.setState({open: !this.state.open})
 
-  setTitle = title => this.setState({title})
+  setTitle = (title) => this.setState({title})
 
   handleLogin = () => this.props.requestLogin()
 
@@ -26,15 +26,32 @@ class App extends Component {
     const {title, open} = this.state
     return (
       <div>
-        <NavBar handleToggle={this.handleToggle} handleLogin={this.handleLogin} title={title} isLogin={this.props.isLoggedIn}/>
-
-        <SlideDrawer handleToggle={this.handleToggle} open={open} setTitle={this.setTitle}/>
+        <NavBar
+          handleToggle={this.handleToggle}
+          handleLogin={this.handleLogin}
+          title={title}
+          isLogin={this.props.isLoggedIn}
+          isLoggingIn={this.props.isLoggingIn}
+        />
+        <SlideDrawer
+          handleToggle={this.handleToggle}
+          open={open}
+          setTitle={this.setTitle}
+        />
         {/* child component will be rendered here */}
         {this.props.children}
-
       </div>
     )
   }
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  requestLogin: PropTypes.func.isRequired,
+  loginFailure: PropTypes.bool.isRequired,
+  isLoggingIn: PropTypes.bool.isRequired,
+  children: PropTypes.node
+}
+
 
 export default App
