@@ -11,18 +11,20 @@ class SearchBar extends Component {
   }
 
   componentWillReceiveProps({repoName, repoOwner, repoInfo}) {
-    console.log(repoName, repoOwner, repoInfo)
     if(repoInfo.commits) {
       const url = `/${repoOwner}/${repoName}`
+
       // route to page
       browserHistory.push(url)
     }
   }
 
-  handleChange = (e) => this.setState({text: e.target.value})
+  handleChange = (e) => this.setState({text: e.target.value.slice(0, 50)})
 
   handleSubmit = () => {
-    this.props.requestReposNames(this.state.text)
+    if(this.state.text.length) {
+      this.props.requestReposNames(this.state.text)
+    }
     this.setState({text:''})
   }
 
@@ -87,16 +89,31 @@ class SearchBar extends Component {
   }
 }
 
+const {arrayOf, bool, number, shape, string, func, object} = PropTypes
+
 SearchBar.propTypes = {
-  requestReposNames: PropTypes.func.isRequired,
-  requestRepoInfo: PropTypes.func.isRequired,
-  totalCount: PropTypes.number.isRequired,
-  repos: PropTypes.array.isRequired,
-  repoSearchLoading: PropTypes.bool.isRequired,
-  repoSearchFailed: PropTypes.bool.isRequired,
-  repoOwner: PropTypes.string.isRequired,
-  repoName: PropTypes.string.isRequired,
-  repoInfo: PropTypes.object.isRequired
+   requestReposNames: func.isRequired,
+   requestRepoInfo: func.isRequired,
+   totalCount: number.isRequired,
+   repos: arrayOf(string.isRequired).isRequired,
+   repoSearchLoading: bool.isRequired,
+   repoSearchFailed: bool.isRequired,
+   repoOwner: string.isRequired,
+   repoName: string.isRequired,
+   repoInfo: shape({
+      commits: arrayOf(shape({
+         avatarURL: string.isRequired,
+         comments: object.isRequired,
+         date: string.isRequired,
+         email: string.isRequired,
+         login: string.isRequired,
+         message: string.isRequired,
+         name: string.isRequired
+      }).isRequired).isRequired,
+      description: string.isRequired,
+      stargazers: number.isRequired,
+      watchers: number.isRequired
+   }).isRequired
 }
 
 export default SearchBar

@@ -8,7 +8,7 @@
 import {
   REPO_NAME_REQUEST,
   REPO_NAME_SUCCESS,
-  REPO_NAME_FAILURE,
+  // REPO_NAME_FAILURE,
   REPO_OWNER_REQUEST,
   REPO_OWNER_SUCCESS,
   REPO_OWNER_FAILURE,
@@ -24,8 +24,7 @@ export const requestReposNames = (login) => {
     dispatch({type: REPO_OWNER_REQUEST, login})
     return client.query(getReposByLogin({login}))
       .then(data => dispatch({type: REPO_OWNER_SUCCESS, payload: data}))
-      .catch(err => dispatch({type: REPO_OWNER_FAILURE, err})
-    )
+      .catch(err => dispatch({type: REPO_OWNER_FAILURE, err}))
   }
 }
 
@@ -34,8 +33,7 @@ export const requestRepoInfo = (login, name) => {
     dispatch({type: REPO_NAME_REQUEST, name})
     return client.query(getRepoInfoByName({login, name}))
       .then(data => dispatch({type: REPO_NAME_SUCCESS, payload: data}))
-      .catch(err => dispatch({type: REPO_NAME_FAILURE, err})
-    )
+      // .catch(err => dispatch({type: REPO_NAME_FAILURE, err}))
   }
 }
 

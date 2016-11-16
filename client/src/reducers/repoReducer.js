@@ -16,13 +16,28 @@ import {
 */
 
 const initialState = {
-  repos: [],
-  totalCount: 0,
-  repoSearchLoading: false,
-  repoSearchFailed: false,
-  repoOwner: '',
-  repoName: '',
-  repoInfo: {}
+   repos: [],
+   totalCount: 0,
+   repoSearchLoading: false,
+   repoSearchFailed: false,
+   repoOwner: '',
+   repoName: '',
+   repoInfo: {
+      description: '',
+      stargazers: 0,
+      watchers: 0,
+      commits: [
+         {
+            login: '',
+            message: '',
+            avatarURL: '',
+            name: '',
+            email: '',
+            date: '',
+            comments: {}
+         }
+      ]
+   }
 }
 
 function repos(state = initialState, action) {
@@ -76,7 +91,7 @@ function repos(state = initialState, action) {
 
 function removeRepoInfoNesting(data) {
   return {
-    description: data.description,
+    description: data.description || '',
     stargazers: data.stargazers.totalCount,
     watchers: data.watchers.totalCount,
     commits: data.ref.target.history.edges.map(ele => {
