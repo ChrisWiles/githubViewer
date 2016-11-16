@@ -3,7 +3,6 @@ import {requestReposNames, resetSearch, requestRepoInfo} from '../actionCreators
 import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = (state) => {
-  // console.log({...state.repos})
   return {...state.repos}
 }
 
