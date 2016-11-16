@@ -1,5 +1,15 @@
 import {combineReducers} from 'redux'
-import {REPO_NAME_REQUEST, REPO_NAME_SUCCESS, REPO_NAME_FAILURE, REPO_OWNER, RESET_SEARCH} from '../constants/actionTypes'
+
+import {
+  REPO_NAME_REQUEST,
+  REPO_NAME_SUCCESS,
+  REPO_NAME_FAILURE,
+  REPO_OWNER_REQUEST,
+  REPO_OWNER_SUCCESS,
+  REPO_OWNER_FAILURE,
+  RESET_SEARCH,
+  RESET_ERROR_MESSAGE
+} from '../constants/actionTypes'
 
 /*
   Things you should never do inside a reducer
@@ -12,7 +22,9 @@ const initialState = {
   repos: [],
   totalCount: 0,
   repoSearchLoading: false,
-  repoSearchFailed: false
+  repoSearchFailed: false,
+  repoLogin: null,
+  repoName: null
 }
 
 function repos(state = initialState, action) {
@@ -20,13 +32,13 @@ function repos(state = initialState, action) {
   const repoNames = repos => repos.map(repo => repo.node.name)
 
   switch (action.type) {
-    case REPO_NAME_REQUEST:
+    case REPO_OWNER_REQUEST:
       return {
         ...state,
         repoSearchLoading: true,
         repoSearchFailed: false
       }
-    case REPO_NAME_SUCCESS:
+    case REPO_OWNER_SUCCESS:
       let {edges, totalCount} = action.payload.data.repositoryOwner.repositories
       return {
         ...state,
@@ -34,14 +46,18 @@ function repos(state = initialState, action) {
         totalCount,
         repoSearchLoading: false
       }
-    case REPO_NAME_FAILURE:
+    case REPO_OWNER_FAILURE:
       return {
         ...state,
         repoSearchLoading: false,
         repoSearchFailed: true
       }
-    case REPO_OWNER:
+    case REPO_NAME_REQUEST:
       return action.payload.data
+    case REPO_NAME_SUCCESS:
+      return state
+    case REPO_NAME_FAILURE:
+      return state
     case RESET_SEARCH:
       return initialState
     default:

@@ -21,20 +21,20 @@ import {client} from '../createApolloClient'
 
 export const requestReposNames = (login) => {
   return dispatch => {
-    dispatch({type: REPO_NAME_REQUEST})
+    dispatch({type: REPO_OWNER_REQUEST, login})
     return client.query(getReposByLogin({login}))
-      .then(data => dispatch({type: REPO_NAME_SUCCESS, payload: data}))
-      .catch(err => dispatch({type: REPO_NAME_FAILURE, err})
+      .then(data => dispatch({type: REPO_OWNER_SUCCESS, payload: data}))
+      .catch(err => dispatch({type: REPO_OWNER_FAILURE, err})
     )
   }
 }
 
 export const requestRepoInfo = ({login, name}) => {
   return dispatch => {
-    dispatch({type: REPO_OWNER_REQUEST})
+    dispatch({type: REPO_NAME_REQUEST})
     return client.query(getRepoInfoByName({login, name}))
-      .then(data => dispatch({type: REPO_OWNER_SUCCESS, payload: data}))
-      .catch(err => dispatch({type: REPO_OWNER_FAILURE, err})
+      .then(data => dispatch({type: REPO_NAME_SUCCESS, payload: data}))
+      .catch(err => dispatch({type: REPO_NAME_FAILURE, err})
     )
   }
 }
