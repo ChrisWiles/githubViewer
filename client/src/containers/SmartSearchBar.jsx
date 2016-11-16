@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
-import SearchLogin from '../components/SearchLogin'
 import {requestReposNames, resetSearch} from '../actionCreators'
+import SearchLogin from '../components/SearchLogin'
 
 const mapStateToProps = (state) => {
-  let {repos, totalCount} = state.repos
-  return ({repos, totalCount})
+  // console.log({...state.repos})
+  return {...state.repos}
 }
 
 export default connect(mapStateToProps, {requestReposNames, resetSearch})(SearchLogin)

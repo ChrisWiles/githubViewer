@@ -3,10 +3,6 @@ import AutoComplete from 'material-ui/AutoComplete'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
-
-// Type github login...
-// Searching for Repos...
-// Found x repos
 class SearchLogin extends Component {
   state = {
     text: ''
@@ -21,17 +17,30 @@ class SearchLogin extends Component {
 
   handleReset = () => this.props.resetSearch()
 
+  generateLabel() {
+    if (this.props.repoSearchFailed) {
+      return 'Search Failed, please try again'
+    } else {
+      if (this.props.repoSearchLoading) {
+        return 'Searching for repos...'
+      } else {
+        return 'Search Github Accounts'
+      }
+    }
+  }
+
   renderSearch() {
-    if(this.props.repos.length) {
+    const {repos, totalCount} = this.props
+
+    if(repos.length) {
       return (
         <div>
           <AutoComplete
-            floatingLabelText={`Found ${this.props.totalCount} repos`}
+            floatingLabelText={`Found ${totalCount} repos`}
             filter={AutoComplete.fuzzyFilter}
-            dataSource={this.props.repos}
+            dataSource={repos}
             maxSearchResults={5}
           />
-          {/* call redux fumction to reset search */}
           <FlatButton label="New Search" onTouchTap={this.handleReset}/>
         </div>
       )
@@ -39,7 +48,7 @@ class SearchLogin extends Component {
       return (
         <div>
           <TextField
-            floatingLabelText="Search Github Accounts"
+            floatingLabelText={this.generateLabel()}
             value={this.state.text}
             onChange={this.handleChange}
           />
@@ -50,7 +59,6 @@ class SearchLogin extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         {this.renderSearch()}
@@ -59,11 +67,12 @@ class SearchLogin extends Component {
   }
 }
 
-
 SearchLogin.propTypes = {
   requestReposNames: PropTypes.func.isRequired,
   totalCount: PropTypes.number.isRequired,
-  repos: PropTypes.array.isRequired
+  repos: PropTypes.array.isRequired,
+  repoSearchLoading: PropTypes.bool.isRequired,
+  repoSearchFailed: PropTypes.bool.isRequired
 }
 
 export default SearchLogin
