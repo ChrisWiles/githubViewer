@@ -59,9 +59,10 @@ function repos(state = initialState, action) {
         repoName: action.name
       }
     case REPO_NAME_SUCCESS:
+    const info = action.payload.data.repositoryOwner.repository
       return {
         ...state,
-        repoInfo: action.payload.data.repositoryOwner.repository
+        repoInfo: removeRepoInfoNesting(info)
       }
     case REPO_NAME_FAILURE:
       return {
@@ -72,6 +73,27 @@ function repos(state = initialState, action) {
       return initialState
     default:
       return state
+  }
+}
+
+function removeRepoInfoNesting(data) {
+  return {
+    description: data.description,
+    stargazers: data.stargazers.totalCount,
+    watchers: data.watchers.totalCount,
+    commits: data.ref.target.history.edges.map(ele => {
+      const {message, author, comments} = ele.node
+      const {avatarURL, name, email, date, user} = author
+      return {
+        login: user.login,
+        message,
+        avatarURL,
+        name,
+        email,
+        date,
+        comments
+      }
+    })
   }
 }
 
