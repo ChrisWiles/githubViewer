@@ -7,7 +7,7 @@ import AppBar from 'material-ui/AppBar'
 import Paper from 'material-ui/Paper'
 
 const styles = {
-  errorStyle: {
+  hintStyle: {
     color: blue500
   },
   loginWindow: {
@@ -39,8 +39,8 @@ class Login extends Component {
   state = {
     pass: '',
     user: '',
-    passError: '',
-    userError: ''
+    userError: '',
+    passError: ''
   }
 
   handleChangePass = (e) => this.setState({pass: e.target.value})
@@ -48,8 +48,14 @@ class Login extends Component {
 
   handleSubmit = () => {
     const {pass, user} = this.state
-    this.props.requestLogin(user, pass)
-    this.setState({pass: '', user: ''})
+    if(pass && user) {
+      this.props.requestLogin(user, pass)
+      this.setState({pass: '', user: '', passError: '', userError: ''})
+    } else if (pass){
+      this.setState({userError: 'Missing Field'})
+    } else {
+      this.setState({passError: 'Missing Field'})
+    }
   }
 
   handleKeyUp = (e) => e.keyCode === 13 && this.handleSubmit()
@@ -64,7 +70,7 @@ class Login extends Component {
             <TextField
               hintText="Username"
               errorText={this.state.userError}
-              hintStyle={styles.errorStyle}
+              hintStyle={styles.hintStyle}
               value={this.state.user}
               onChange={this.handleChangeUser}/>
             <br/>
@@ -73,7 +79,7 @@ class Login extends Component {
               hintText="Password"
               type="password"
               errorText={this.state.passError}
-              hintStyle={styles.errorStyle}
+              hintStyle={styles.hintStyle}
               value={this.state.pass}
               onChange={this.handleChangePass}/>
             <br/>

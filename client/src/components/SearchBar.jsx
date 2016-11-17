@@ -1,6 +1,5 @@
 import React, {PropTypes, Component} from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
-import FlatButton from 'material-ui/FlatButton'
 import MenuItem from 'material-ui/MenuItem'
 import {browserHistory} from 'react-router'
 import {genRandomReactLink} from '../reactLinksData'
