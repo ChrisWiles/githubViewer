@@ -42,7 +42,12 @@ const initialState = {
 
 function repos(state = initialState, action) {
 
-  const repoNames = repos => repos.map(repo => repo.node.name)
+  const repoNames = repos => repos.map(repo => {
+    return {
+      name: repo.node.name,
+      stargazers: repo.node.stargazers.totalCount
+    }
+  })
 
   switch (action.type) {
     case REPO_OWNER_REQUEST:

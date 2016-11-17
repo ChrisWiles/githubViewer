@@ -8,6 +8,9 @@ const GET_REPOS = gql `
   		  edges {
   		    node {
   		      name
+            stargazers {
+              totalCount
+            }
   		    }
   		  }
   		}

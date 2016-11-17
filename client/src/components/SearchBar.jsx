@@ -2,6 +2,8 @@ import React, {PropTypes, Component} from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
 import FlatButton from 'material-ui/FlatButton'
 
+import MenuItem from 'material-ui/MenuItem'
+
 import {browserHistory} from 'react-router'
 
 // TODO: if searchbox is clicked and !loggedIn => popup login modal
@@ -30,6 +32,7 @@ class SearchBar extends Component {
       requestRepoInfo(repoOwner, repoName)
       this.props.resetSearch()
     } else if (isLoggedIn) {
+      this.props.setNavBarTitle(`/${this.state.text}`)
       this.props.requestReposNames(this.state.text)
     }
     this.setState({text: ''})
@@ -37,6 +40,7 @@ class SearchBar extends Component {
 
   generateLabel() {
      const {repos, totalCount, repoSearchFailed, repoSearchLoading, isLoggedIn} = this.props
+
      if (!isLoggedIn) {
        return 'Login with GitHub...'
      } else if (repos.length) {
@@ -53,14 +57,26 @@ class SearchBar extends Component {
   render() {
     const {repos} = this.props
 
+    const dataSource = repos.map(repo => {
+      return {
+        text: repo.name,
+        value: (
+          <MenuItem
+            primaryText={repo.name}
+            secondaryText={repo.stargazers}
+          />
+        )
+      }
+    })
+
     return (
       <div>
         <AutoComplete
           hintText={this.generateLabel()}
           filter={AutoComplete.fuzzyFilter}
-          dataSource={repos}
+          dataSource={dataSource}
           searchText={this.state.text}
-          maxSearchResults={5}
+          maxSearchResults={10}
           onNewRequest={this.handleRequest}
           onUpdateInput={this.handleUpdateInput}
         />
@@ -81,7 +97,10 @@ SearchBar.propTypes = {
    requestReposNames: func.isRequired,
    requestRepoInfo: func.isRequired,
    totalCount: number.isRequired,
-   repos: arrayOf(string.isRequired).isRequired,
+   repos: arrayOf(shape({
+     name: string.isRequired,
+     stargazers: number.isRequired
+   })).isRequired,
    repoSearchLoading: bool.isRequired,
    repoSearchFailed: bool.isRequired,
    repoOwner: string.isRequired,
