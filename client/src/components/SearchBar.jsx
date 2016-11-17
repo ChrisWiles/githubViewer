@@ -4,6 +4,9 @@ import FlatButton from 'material-ui/FlatButton'
 
 import {browserHistory} from 'react-router'
 
+// TODO: if searchbox is clicked and !loggedIn => popup login modal
+
+
 class SearchBar extends Component {
   state = {
     text: ''
@@ -21,21 +24,25 @@ class SearchBar extends Component {
   handleUpdateInput = (value) => this.setState({text: value.slice(0, 50)})
 
   handleRequest = (repoName) => {
-    const {requestRepoInfo, repoOwner, repos} = this.props
+    const {requestRepoInfo, repoOwner, repos, isLoggedIn} = this.props
     if (repos.length) {
       requestRepoInfo(repoOwner, repoName)
       this.props.resetSearch()
       this.setState({text: ''})
-    } else {
+    } else if (isLoggedIn) {
       this.props.requestReposNames(this.state.text)
+      this.setState({text: ''})
+    } else {
       this.setState({text: ''})
     }
   }
 
   generateLabel() {
-     const {repos, totalCount, repoSearchFailed, repoSearchLoading} = this.props
-     if (repos.length) {
-        return `Found ${totalCount} repos`
+     const {repos, totalCount, repoSearchFailed, repoSearchLoading, isLoggedIn} = this.props
+     if (!isLoggedIn) {
+       return 'Login with GitHub...'
+     } else if (repos.length) {
+       return `Found ${totalCount} repos`
      } else if (repoSearchFailed) {
         return 'Search Failed, please try again'
      } else if (repoSearchLoading) {
@@ -71,6 +78,7 @@ class SearchBar extends Component {
 const {arrayOf, bool, number, shape, string, func, object} = PropTypes
 
 SearchBar.propTypes = {
+   isLoggedIn: bool.isRequired,
    requestReposNames: func.isRequired,
    requestRepoInfo: func.isRequired,
    totalCount: number.isRequired,

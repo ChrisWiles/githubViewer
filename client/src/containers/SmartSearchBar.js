@@ -3,7 +3,7 @@ import {requestReposNames, resetSearch, requestRepoInfo} from '../actionCreators
 import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = (state) => {
-  return {...state.repos}
+  return {...state.repos, isLoggedIn: state.login.isLoggedIn}
 }
 
 export default connect(
