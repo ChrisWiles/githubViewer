@@ -28,13 +28,10 @@ class SearchBar extends Component {
     if (repos.length) {
       requestRepoInfo(repoOwner, repoName)
       this.props.resetSearch()
-      this.setState({text: ''})
     } else if (isLoggedIn) {
       this.props.requestReposNames(this.state.text)
-      this.setState({text: ''})
-    } else {
-      this.setState({text: ''})
     }
+    this.setState({text: ''})
   }
 
   generateLabel() {

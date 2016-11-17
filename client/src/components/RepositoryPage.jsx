@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react'
 
 
 const RepositoryPage = ({repoInfo}) => {
-  console.log(repoInfo)
   return (
     <p>{JSON.stringify(repoInfo)}</p>
   )

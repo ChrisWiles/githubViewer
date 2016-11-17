@@ -4,6 +4,10 @@ import IconButton from 'material-ui/IconButton'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 import Menu from 'material-ui/svg-icons/navigation/menu'
 import SmartSearchBar from '../containers/SmartSearchBar'
+import GitHubIcon from './GitHubIcon'
+// TODO: display username and GitHub logo after sign in
+
+
 
 const label = (isLogin, isLoggingIn) => {
   if(isLoggingIn) {
@@ -13,6 +17,7 @@ const label = (isLogin, isLoggingIn) => {
   }
 }
 
+
 const NavBar = ({title, handleToggle, isLogin, handleLogin, isLoggingIn}) => (
   <Toolbar>
     <ToolbarGroup firstChild={true}>
@@ -21,7 +26,13 @@ const NavBar = ({title, handleToggle, isLogin, handleLogin, isLoggingIn}) => (
     </ToolbarGroup>
     <SmartSearchBar/>
     <ToolbarGroup lastChild={true}>
-      <RaisedButton primary={true} label={label(isLogin, isLoggingIn)} onTouchTap={handleLogin}/>
+
+      <RaisedButton
+        primary={true}
+        label={label(isLogin, isLoggingIn)}
+        onTouchTap={handleLogin}
+        icon={<GitHubIcon/>}
+      />
     </ToolbarGroup>
   </Toolbar>
 )
