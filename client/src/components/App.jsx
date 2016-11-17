@@ -1,41 +1,36 @@
-import React, {Component, PropTypes} from 'react'
+import React, {PropTypes} from 'react'
 import NavBar from './NavBar'
 import SlideDrawer from './SlideDrawer'
 
-class App extends Component {
-
-  render() {
-    return (
-      <div>
-        <NavBar
-          handleToggle={this.props.toggleSlideDrawer}
-          handleLogin={this.props.requestLogin}
-          title={this.props.navTitle}
-          isLogin={this.props.isLoggedIn}
-          isLoggingIn={this.props.isLoggingIn}
-        />
-        <SlideDrawer
-          handleToggle={this.props.toggleSlideDrawer}
-          open={this.props.isSlideDrawerOpen}
-          setTitle={this.props.setNavBarTitle}
-        />
-        {/* child component will be rendered here */}
-        {this.props.children}
-      </div>
-    )
-  }
-}
+const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSlideDrawer, requestLogin, navTitle, isLoggedIn}) => (
+  <div>
+    <NavBar
+      handleToggle={toggleSlideDrawer}
+      handleLogin={requestLogin}
+      title={navTitle}
+      isLogin={isLoggedIn}
+      isLoggingIn={isLoggingIn}
+    />
+    <SlideDrawer
+      handleToggle={toggleSlideDrawer}
+      open={isSlideDrawerOpen}
+      setTitle={setNavBarTitle}
+    />
+    {/* child component will be rendered here */}
+    {children}
+  </div>
+)
 
 App.propTypes = {
-  setNavBarTitle: PropTypes.func.isRequired,
-  navTitle: PropTypes.string.isRequired,
-  isSlideDrawerOpen: PropTypes.bool.isRequired,
-  toggleSlideDrawer: PropTypes.func.isRequired,
+  children: PropTypes.node,
   isLoggedIn: PropTypes.bool.isRequired,
-  requestLogin: PropTypes.func.isRequired,
-  loginFailure: PropTypes.bool.isRequired,
   isLoggingIn: PropTypes.bool.isRequired,
-  children: PropTypes.node
+  isSlideDrawerOpen: PropTypes.bool.isRequired,
+  loginFailure: PropTypes.bool.isRequired,
+  navTitle: PropTypes.string.isRequired,
+  requestLogin: PropTypes.func.isRequired,
+  setNavBarTitle: PropTypes.func.isRequired,
+  toggleSlideDrawer: PropTypes.func.isRequired
 }
 
 
