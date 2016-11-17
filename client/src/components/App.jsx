@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import NavBar from './NavBar'
 import SlideDrawer from './SlideDrawer'
+import SmartLogin from '../containers/SmartLogin'
 
 const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSlideDrawer, requestLogin, navTitle, isLoggedIn}) => (
   <div>
@@ -17,7 +18,7 @@ const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSl
       setTitle={setNavBarTitle}
     />
     {/* child component will be rendered here */}
-    {children}
+    {isLoggedIn ? children : <SmartLogin/>}
   </div>
 )
 

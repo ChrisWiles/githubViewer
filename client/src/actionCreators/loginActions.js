@@ -1,5 +1,4 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../constants/actionTypes'
-import {username, password} from '../config'
 
 export let TOKEN = null
 
@@ -11,8 +10,7 @@ const config = {
 
 const AUTH_URL_PATH = 'https://api.github.com/authorizations'
 
-
-export const requestLogin = () => {
+export const requestLogin = (username, password) => {
   const bytes = username.trim() + ':' + password.trim()
   const encoded = base64.encode(bytes)
 

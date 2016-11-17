@@ -13,7 +13,7 @@ const label = (isLogin, isLoggingIn) => {
   if(isLoggingIn) {
     return 'Logging in...'
   } else {
-    return isLogin ? 'Logout' : "Login"
+    return isLogin ? 'Welcome' : "Login"
   }
 }
 

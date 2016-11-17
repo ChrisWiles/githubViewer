@@ -6,9 +6,8 @@ import Divider from 'material-ui/Divider'
 
 const CommitsList = ({commits}) => {
   const listItems = commits.map(commit => (
-    <div>
+    <div key={commit.date}>
       <ListItem
-        key={commit.date}
         primaryText={commit.login}
         secondaryText={commit.email}
         rightAvatar={<Avatar src={commit.avatarURL} />}
