@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react'
 import TextField from 'material-ui/TextField'
-import {Card, CardHeader, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import {blue500} from 'material-ui/styles/colors'
 import GitHubIcon from './GitHubIcon'
+import AppBar from 'material-ui/AppBar'
+import Paper from 'material-ui/Paper'
 
 const styles = {
   errorStyle: {
@@ -12,11 +13,23 @@ const styles = {
   loginWindow: {
     margin: '20px 100px',
     minWidth: 400,
-    maxWidth: 450
+    maxWidth: 800,
+    display: 'flex',
+    justifyContent: 'center'
   },
   buttonDiv: {
     justifyContent: 'center',
     display: 'flex'
+  },
+  paper: {
+    width: 400,
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block'
+  },
+  signInButton: {
+    width: 256,
+    margin: 15
   }
 }
 
@@ -44,9 +57,10 @@ class Login extends Component {
   render() {
     return (
       <div style={styles.loginWindow}>
-        <Card style={{width: '100%'}}>
-          <CardHeader title="Login Page"/>
-          <CardText>
+        <Paper style={styles.paper} zDepth={1}>
+          <AppBar title="Welcome" showMenuIconButton={false}/>
+          <div>
+          <br/>
             <TextField
               hintText="Username"
               errorText={this.state.userError}
@@ -65,16 +79,17 @@ class Login extends Component {
               onChange={this.handleChangePass}
             />
             <br/>
-            <div style={styles.buttonDiv}>
-              <RaisedButton
-                label="Login"
-                primary={true}
-                onTouchTap={this.handleSubmit}
-                icon={<GitHubIcon/>}
-              />
-            </div>
-          </CardText>
-        </Card>
+            <br/>
+            <RaisedButton
+              style={styles.signInButton}
+              label="Login"
+              primary={true}
+              onTouchTap={this.handleSubmit}
+              icon={<GitHubIcon/>}
+            />
+            <br/>
+          </div>
+        </Paper>
       </div>
     )
   }
