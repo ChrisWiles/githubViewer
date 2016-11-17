@@ -88,7 +88,10 @@ function repos(state = initialState, action) {
         repoName: ''
       }
     case RESET_SEARCH:
-      return initialState
+      return {
+        ...initialState,
+        repoInfo: state.repoInfo
+      }
     default:
       return state
   }

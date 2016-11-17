@@ -10,16 +10,18 @@ import {genRandomReactLink} from '../reactLinksData'
 class SearchBar extends Component {
   state = {
     text: '',
-    randomLink: genRandomReactLink()
+    randomLink: genRandomReactLink(),
+    isRandomLink: true
   }
 
   componentWillReceiveProps({repoName, repoOwner, isLoggedIn}) {
-    if(isLoggedIn && (!repoName && !repoOwner)) {
+    const {login, name} = this.state.randomLink
 
-      const {login, name} = this.state.randomLink
-      this.props.requestRepoInfo(login, name)
-        .then(data => this.handleSuccessReq(login, name))
+    if (this.state.isRandomLink && isLoggedIn) {
+       this.props.requestRepoInfo(login, name).then(data => this.handleSuccessReq(login, name))
+       this.setState({isRandomLink: false})
     }
+
     if(isLoggedIn && repoName && repoOwner) {
       this.handleSuccessReq(repoOwner, repoName)
     }
@@ -28,6 +30,7 @@ class SearchBar extends Component {
   handleSuccessReq(login, name) {
     const url = `${login}/${name}`
     this.props.setNavBarTitle(url)
+    this.props.resetSearch()
     browserHistory.push(`/${url}`)
   }
 
@@ -36,8 +39,7 @@ class SearchBar extends Component {
   handleRequest = (repoName) => {
     const {requestRepoInfo, repoOwner, repos, isLoggedIn} = this.props
     if (repos.length) {
-      requestRepoInfo(repoOwner, repoName.text || repoName)
-      this.props.resetSearch()
+      requestRepoInfo(repoOwner, repoName.text || repoName).then(data => this.handleSuccessReq(repoOwner, repoName.text || repoName))
     } else if (isLoggedIn) {
       this.props.setNavBarTitle(`/${this.state.text}`)
       this.props.requestReposNames(this.state.text)
