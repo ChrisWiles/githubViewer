@@ -2,40 +2,26 @@ import React, {Component, PropTypes} from 'react'
 import NavBar from './NavBar'
 import SlideDrawer from './SlideDrawer'
 
-// const App = ({children, }) => {
-//
-// }
-
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false,
-      title: ''
-    }
-  }
-
-  handleToggle = () => this.setState({open: !this.state.open})
+  state = {title: ''}
 
   setTitle = (title) => this.setState({title})
 
-  handleLogin = () => this.props.requestLogin()
-
   render() {
 
-    const {title, open} = this.state
+    const {title} = this.state
     return (
       <div>
         <NavBar
-          handleToggle={this.handleToggle}
-          handleLogin={this.handleLogin}
+          handleToggle={this.props.toggleSlideDrawer}
+          handleLogin={this.props.requestLogin}
           title={title}
           isLogin={this.props.isLoggedIn}
           isLoggingIn={this.props.isLoggingIn}
         />
         <SlideDrawer
-          handleToggle={this.handleToggle}
-          open={open}
+          handleToggle={this.props.toggleSlideDrawer}
+          open={this.props.isSlideDrawerOpen}
           setTitle={this.setTitle}
         />
         {/* child component will be rendered here */}
@@ -46,6 +32,8 @@ class App extends Component {
 }
 
 App.propTypes = {
+  isSlideDrawerOpen: PropTypes.bool.isRequired,
+  toggleSlideDrawer: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   requestLogin: PropTypes.func.isRequired,
   loginFailure: PropTypes.bool.isRequired,
