@@ -35,7 +35,6 @@ class SearchBar extends Component {
   handleUpdateInput = (value) => this.setState({text: value.slice(0, 50)})
 
   handleRequest = (repoName) => {
-    console.log(repoName)
     const {requestRepoInfo, repoOwner, repos, isLoggedIn} = this.props
     if (repos.length) {
       requestRepoInfo(repoOwner, repoName.text || repoName)
@@ -81,21 +80,15 @@ class SearchBar extends Component {
     })
 
     return (
-      <div>
-        <AutoComplete
-          hintText={this.generateLabel()}
-          filter={AutoComplete.fuzzyFilter}
-          dataSource={dataSource}
-          searchText={this.state.text}
-          maxSearchResults={10}
-          onNewRequest={this.handleRequest}
-          onUpdateInput={this.handleUpdateInput}
-        />
-        <FlatButton
-          label={repos.length ? 'New Search' : 'Search'}
-          onTouchTap={this.handleRequest}
-         />
-      </div>
+      <AutoComplete
+        hintText={this.generateLabel()}
+        filter={AutoComplete.fuzzyFilter}
+        dataSource={dataSource}
+        searchText={this.state.text}
+        maxSearchResults={10}
+        onNewRequest={this.handleRequest}
+        onUpdateInput={this.handleUpdateInput}
+      />
     )
   }
 }
