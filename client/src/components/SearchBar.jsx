@@ -1,6 +1,5 @@
 import React, {PropTypes, Component} from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
-import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
 import {browserHistory} from 'react-router'
@@ -11,7 +10,7 @@ class SearchBar extends Component {
   }
 
   componentWillReceiveProps({repoName, repoOwner, repoInfo}) {
-    if(repoInfo.commits) {
+    if(repoName && repoOwner) {
       const url = `/${repoOwner}/${repoName}`
 
       // route to page
@@ -19,71 +18,51 @@ class SearchBar extends Component {
     }
   }
 
-  handleChange = (e) => this.setState({text: e.target.value.slice(0, 50)})
-
-  handleSubmit = () => {
-    if(this.state.text.length) {
-      this.props.requestReposNames(this.state.text)
-    }
-    this.setState({text:''})
-  }
-
-  handleReset = () => this.props.resetSearch()
+  handleUpdateInput = (value) => this.setState({text: value.slice(0, 50)})
 
   handleRequest = (repoName) => {
-    const {requestRepoInfo, repoOwner} = this.props
-    requestRepoInfo(repoOwner, repoName)
-
+    const {requestRepoInfo, repoOwner, repos} = this.props
+    if (repos.length) {
+      requestRepoInfo(repoOwner, repoName)
+      this.props.resetSearch()
+      this.setState({text: ''})
+    } else {
+      this.props.requestReposNames(this.state.text)
+      this.setState({text: ''})
+    }
   }
 
   generateLabel() {
-    if (this.props.repoSearchFailed) {
-      return 'Search Failed, please try again'
-    } else {
-      if (this.props.repoSearchLoading) {
+     const {repos, totalCount, repoSearchFailed, repoSearchLoading} = this.props
+     if (repos.length) {
+        return `Found ${totalCount} repos`
+     } else if (repoSearchFailed) {
+        return 'Search Failed, please try again'
+     } else if (repoSearchLoading) {
         return 'Searching for repos...'
-      } else {
+     } else {
         return 'Search Github Accounts'
-      }
-    }
-  }
-
-
-
-  renderSearch() {
-    const {repos, totalCount} = this.props
-
-    if(repos.length) {
-      return (
-        <div>
-          <AutoComplete
-            floatingLabelText={`Found ${totalCount} repos`}
-            filter={AutoComplete.fuzzyFilter}
-            dataSource={repos}
-            maxSearchResults={5}
-            onNewRequest={this.handleRequest}
-          />
-          <FlatButton label="New Search" onTouchTap={this.handleReset}/>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <TextField
-            floatingLabelText={this.generateLabel()}
-            value={this.state.text}
-            onChange={this.handleChange}
-          />
-          <FlatButton label="search" onTouchTap={this.handleSubmit}/>
-        </div>
-      )
-    }
+     }
   }
 
   render() {
+    const {repos} = this.props
+
     return (
       <div>
-        {this.renderSearch()}
+        <AutoComplete
+          hintText={this.generateLabel()}
+          filter={AutoComplete.fuzzyFilter}
+          dataSource={repos}
+          searchText={this.state.text}
+          maxSearchResults={5}
+          onNewRequest={this.handleRequest}
+          onUpdateInput={this.handleUpdateInput}
+        />
+        <FlatButton
+          label={repos.length ? 'New Search' : 'Search'}
+          onTouchTap={this.handleRequest}
+         />
       </div>
     )
   }
