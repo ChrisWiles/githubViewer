@@ -1,27 +1,35 @@
 import React, {PropTypes, Component} from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
 import FlatButton from 'material-ui/FlatButton'
-
 import MenuItem from 'material-ui/MenuItem'
-
 import {browserHistory} from 'react-router'
+import {genRandomReactLink} from '../reactLinksData'
 
 // TODO: if searchbox is clicked and !loggedIn => popup login modal
 // hmm add text input to redux state or not...
 
 class SearchBar extends Component {
   state = {
-    text: ''
+    text: '',
+    randomLink: genRandomReactLink()
   }
 
-  componentWillReceiveProps({repoName, repoOwner, repoInfo}) {
-    if(repoName && repoOwner) {
-      const url = `${repoOwner}/${repoName}`
-      this.props.setNavBarTitle(url)
+  componentWillReceiveProps({repoName, repoOwner, isLoggedIn}) {
+    if(isLoggedIn && (!repoName && !repoOwner)) {
 
-      // route to page
-      browserHistory.push(`/${url}`)
+      const {login, name} = this.state.randomLink
+      this.props.requestRepoInfo(login, name)
+        .then(data => this.handleSuccessReq(login, name))
     }
+    if(isLoggedIn && repoName && repoOwner) {
+      this.handleSuccessReq(repoOwner, repoName)
+    }
+  }
+
+  handleSuccessReq(login, name) {
+    const url = `${login}/${name}`
+    this.props.setNavBarTitle(url)
+    browserHistory.push(`/${url}`)
   }
 
   handleUpdateInput = (value) => this.setState({text: value.slice(0, 50)})
