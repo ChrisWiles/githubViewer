@@ -98,7 +98,7 @@ function removeRepoInfoNesting(data) {
       const {message, author, comments} = ele.node
       const {avatarURL, name, email, date, user} = author
       return {
-        login: user.login,
+        login: (user && user.login) || '',
         message,
         avatarURL,
         name,
