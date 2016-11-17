@@ -29,7 +29,7 @@ class SearchBar extends Component {
   handleRequest = (repoName) => {
     const {requestRepoInfo, repoOwner, repos, isLoggedIn} = this.props
     if (repos.length) {
-      requestRepoInfo(repoOwner, repoName)
+      requestRepoInfo(repoOwner, repoName.text)
       this.props.resetSearch()
     } else if (isLoggedIn) {
       this.props.setNavBarTitle(`/${this.state.text}`)
@@ -63,7 +63,8 @@ class SearchBar extends Component {
         value: (
           <MenuItem
             primaryText={repo.name}
-            secondaryText={repo.stargazers}
+            // rightIcon={<Chip>{repo.stargazer}</Chip>}
+            secondaryText={repo.stargazers || '0'} // bug: secondaryText type coercion 0 to false and renders null
           />
         )
       }
