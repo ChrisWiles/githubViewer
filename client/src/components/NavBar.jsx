@@ -13,12 +13,12 @@ const label = (isLogin, isLoggingIn) => {
   if(isLoggingIn) {
     return 'Logging in...'
   } else {
-    return isLogin ? 'Welcome' : "Login"
+    return isLogin ? 'Welcome' : ''
   }
 }
 
 
-const NavBar = ({title, handleToggle, isLogin, handleLogin, isLoggingIn}) => (
+const NavBar = ({title, handleToggle, isLogin, isLoggingIn}) => (
   <Toolbar>
     <ToolbarGroup firstChild={true}>
       <IconButton onTouchTap={handleToggle}><Menu/></IconButton>
@@ -30,7 +30,6 @@ const NavBar = ({title, handleToggle, isLogin, handleLogin, isLoggingIn}) => (
       <RaisedButton
         primary={true}
         label={label(isLogin, isLoggingIn)}
-        onTouchTap={handleLogin}
         icon={<GitHubIcon/>}
       />
     </ToolbarGroup>
@@ -41,7 +40,6 @@ NavBar.propTypes = {
   title: PropTypes.string.isRequired,
   handleToggle: PropTypes.func.isRequired,
   isLogin: PropTypes.bool.isRequired,
-  handleLogin: PropTypes.func.isRequired,
   isLoggingIn: PropTypes.bool.isRequired
 }
 

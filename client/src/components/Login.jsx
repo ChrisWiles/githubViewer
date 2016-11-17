@@ -12,8 +12,6 @@ const styles = {
   },
   loginWindow: {
     margin: '20px 100px',
-    minWidth: 400,
-    maxWidth: 800,
     display: 'flex',
     justifyContent: 'center'
   },
@@ -54,12 +52,14 @@ class Login extends Component {
     this.setState({pass: '', user: ''})
   }
 
+  handleKeyUp = (e) => e.keyCode === 13 && this.handleSubmit()
+
   render() {
     return (
       <div style={styles.loginWindow}>
         <Paper style={styles.paper} zDepth={1}>
           <AppBar title="Welcome" showMenuIconButton={false}/>
-          <div>
+          <div onKeyUp={this.handleKeyUp}>
             <br/>
             <TextField
               hintText="Username"
