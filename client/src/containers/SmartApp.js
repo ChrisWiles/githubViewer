@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import App from '../components/App'
 import {requestLogin} from '../actionCreators/loginActions'
-import {toggleSlideDrawer} from '../actionCreators/UIActions'
+import {toggleSlideDrawer, setNavBarTitle} from '../actionCreators/UIActions'
 
 
 const mapStateToProps = (state) => {
@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps, {
     requestLogin,
-    toggleSlideDrawer
+    toggleSlideDrawer,
+    setNavBarTitle
   }
 )(App)

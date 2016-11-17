@@ -1,4 +1,4 @@
-import {TOGGLE_SLIDE_DRAWER} from '../constants/actionTypes'
+import {TOGGLE_SLIDE_DRAWER, NAVBAR_TITLE} from '../constants/actionTypes'
 
 /*
   Things you should never do inside a reducer
@@ -8,7 +8,8 @@ import {TOGGLE_SLIDE_DRAWER} from '../constants/actionTypes'
 */
 
 const initialState = {
-  isSlideDrawerOpen: false
+  isSlideDrawerOpen: false,
+  navTitle: ''
 }
 
 function ui(state = initialState, action) {
@@ -18,6 +19,11 @@ function ui(state = initialState, action) {
       return {
         ...state,
         isSlideDrawerOpen: !state.isSlideDrawerOpen
+      }
+      case NAVBAR_TITLE:
+      return {
+        ...state,
+        navTitle: action.navTitle
       }
     default:
       return state

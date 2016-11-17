@@ -3,26 +3,21 @@ import NavBar from './NavBar'
 import SlideDrawer from './SlideDrawer'
 
 class App extends Component {
-  state = {title: ''}
-
-  setTitle = (title) => this.setState({title})
 
   render() {
-
-    const {title} = this.state
     return (
       <div>
         <NavBar
           handleToggle={this.props.toggleSlideDrawer}
           handleLogin={this.props.requestLogin}
-          title={title}
+          title={this.props.navTitle}
           isLogin={this.props.isLoggedIn}
           isLoggingIn={this.props.isLoggingIn}
         />
         <SlideDrawer
           handleToggle={this.props.toggleSlideDrawer}
           open={this.props.isSlideDrawerOpen}
-          setTitle={this.setTitle}
+          setTitle={this.props.setNavBarTitle}
         />
         {/* child component will be rendered here */}
         {this.props.children}
@@ -32,6 +27,8 @@ class App extends Component {
 }
 
 App.propTypes = {
+  setNavBarTitle: PropTypes.func.isRequired,
+  navTitle: PropTypes.string.isRequired,
   isSlideDrawerOpen: PropTypes.bool.isRequired,
   toggleSlideDrawer: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
