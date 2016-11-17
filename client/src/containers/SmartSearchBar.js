@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import {requestReposNames, resetSearch, requestRepoInfo} from '../actionCreators/repoActions'
+import {setNavBarTitle} from '../actionCreators/UIActions'
 import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = (state) => {
@@ -10,6 +11,7 @@ export default connect(
   mapStateToProps, {
     requestReposNames,
     resetSearch,
-    requestRepoInfo
+    requestRepoInfo,
+    setNavBarTitle
   }
 )(SearchBar)

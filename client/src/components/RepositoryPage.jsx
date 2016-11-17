@@ -6,13 +6,8 @@ const RepositoryPage = ({repoInfo}) => {
     <p>{JSON.stringify(repoInfo)}</p>
   )
 }
-// class RepositoryPage extends Component {
-//   render() {
-//     return (
-//       <div></div>
-//     )
-//   }
-// }
+
+
 const {arrayOf, number, shape, string, object} = PropTypes
 
 RepositoryPage.propTypes = {

@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton'
 import {browserHistory} from 'react-router'
 
 // TODO: if searchbox is clicked and !loggedIn => popup login modal
-
+// hmm add text input to redux state or not...
 
 class SearchBar extends Component {
   state = {
@@ -14,10 +14,11 @@ class SearchBar extends Component {
 
   componentWillReceiveProps({repoName, repoOwner, repoInfo}) {
     if(repoName && repoOwner) {
-      const url = `/${repoOwner}/${repoName}`
+      const url = `${repoOwner}/${repoName}`
+      this.props.setNavBarTitle(url)
 
       // route to page
-      browserHistory.push(url)
+      browserHistory.push(`/${url}`)
     }
   }
 
@@ -75,6 +76,7 @@ class SearchBar extends Component {
 const {arrayOf, bool, number, shape, string, func, object} = PropTypes
 
 SearchBar.propTypes = {
+   setNavBarTitle: func.isRequired,
    isLoggedIn: bool.isRequired,
    requestReposNames: func.isRequired,
    requestRepoInfo: func.isRequired,
