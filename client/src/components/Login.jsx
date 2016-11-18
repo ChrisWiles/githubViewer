@@ -59,7 +59,7 @@ class Login extends Component {
   render() {
     return (
       <div style={styles.loginWindow}>
-        <Paper style={styles.paper} zDepth={1}>
+        <Paper style={styles.paper} zDepth={2}>
           <AppBar title="Welcome" showMenuIconButton={false}/>
           <div onKeyUp={this.handleKeyUp}>
             <br/>

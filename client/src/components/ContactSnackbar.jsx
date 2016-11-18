@@ -6,11 +6,17 @@ const bodyStyle = {
   justifyContent: 'center'
 }
 
+const msg = (
+  <div style={{fontWeight: '800'}}>
+    Created by Christopher Wiles
+  </div>
+)
+
 const ContactSnackbar = ({isOpen, toggle}) => (
   <Snackbar
     bodyStyle={bodyStyle}
     open={isOpen}
-    message="Created by Christopher Wiles"
+    message={msg}
     autoHideDuration={4000}
     onRequestClose={toggle}
   />

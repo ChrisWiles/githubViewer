@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
-import {Card, CardHeader, CardText} from 'material-ui/Card'
 import CommitsList from './CommitsList'
+import Paper from 'material-ui/Paper'
+import Divider from 'material-ui/Divider'
 
 const rootStyle = {
   margin: '20px 100px',
@@ -9,19 +10,27 @@ const rootStyle = {
 }
 
 const RepositoryPage = ({repoInfo}) => (
+
   <div style={rootStyle}>
-    <Card>
-      <CardHeader
-        title={`Stargazers: ${repoInfo.stargazers}`}
-        subtitle={`Watchers: ${repoInfo.watchers}`}
-      />
-      <CardText>
-        {repoInfo.description}
-      </CardText>
+    <Paper zDepth={2}>
+      <h4>
+        {`Stargazers: ${repoInfo.stargazers}`}
+      </h4>
+      <h4>
+        {`Watchers: ${repoInfo.watchers}`}
+      </h4>
+      <Divider/> {repoInfo.description}
+      <Divider/>
+      <h4>
+        Commits
+      </h4>
+      <Divider/>
       <CommitsList commits={repoInfo.commits}/>
-    </Card>
+    </Paper>
   </div>
+  
 )
+
 
 const {arrayOf, number, shape, string, object} = PropTypes
 
