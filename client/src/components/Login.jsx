@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import {blue500} from 'material-ui/styles/colors'
 import GitHubIcon from './GitHubIcon'
 import AppBar from 'material-ui/AppBar'
 import Paper from 'material-ui/Paper'
