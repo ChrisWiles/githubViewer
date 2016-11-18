@@ -4,29 +4,38 @@ import Avatar from 'material-ui/Avatar'
 import Divider from 'material-ui/Divider'
 import Subheader from 'material-ui/Subheader'
 import Paper from 'material-ui/Paper'
+import moment from 'moment'
 
 const rootStyle = {
-  margin: '20px 100px',
-  minWidth: 400,
-  maxWidth: 800,
   display: 'flex',
   justifyContent: 'center'
 }
 const paperStyle = {
-  width: 600,
-  margin: 20,
-  textAlign: 'center',
+  width: 'auto',
   display: 'inline-block'
 }
+const style = {
+  secondaryText: {  fontSize: 14,
+    margin: 0,
+    marginTop: 4,
+    // color: listItem.secondaryTextColor
+    color: 'black',
+    // needed for 2 and 3 line ellipsis
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'}
+}
+
 
 const CommitsList = ({commits}) => {
-  
-  const listItems = commits.map(commit => (
-    <div key={commit.date}>
+
+  const listItems = commits.map((commit, i) => (
+    <div key={i}>
       <ListItem
-        primaryText={commit.login}
-        secondaryText={commit.email}
-        rightAvatar={<Avatar src={commit.avatarURL}/>}
+        style={style}
+        primaryText={`${commit.login} <${commit.email}> commited ${moment(commit.date).fromNow()}`}
+        secondaryText={commit.message}
+        leftAvatar={<Avatar src={commit.avatarURL}/>}
+        secondaryTextLines={2}
       />
       <Divider/>
     </div>

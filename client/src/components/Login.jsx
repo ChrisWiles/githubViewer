@@ -7,9 +7,6 @@ import AppBar from 'material-ui/AppBar'
 import Paper from 'material-ui/Paper'
 
 const styles = {
-  hintStyle: {
-    color: blue500
-  },
   loginWindow: {
     margin: '20px 100px',
     display: 'flex',

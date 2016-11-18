@@ -2,19 +2,25 @@ import React, {PropTypes} from 'react'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 import CommitsList from './CommitsList'
 
+const rootStyle = {
+  margin: '20px 100px',
+  display: 'flex',
+  justifyContent: 'center'
+}
+
 const RepositoryPage = ({repoInfo}) => (
-  <Card >
-    <CardHeader
-      title={`Stargazers: ${repoInfo.stargazers}`}
-      subtitle={`Watchers: ${repoInfo.watchers}`}
-      actAsExpander={true}
-      showExpandableButton={true}
-    />
-    <CardText>
-      {repoInfo.description}
-    </CardText>
-    <CommitsList commits={repoInfo.commits} expandable={true}/>
-  </Card>
+  <div style={rootStyle}>
+    <Card>
+      <CardHeader
+        title={`Stargazers: ${repoInfo.stargazers}`}
+        subtitle={`Watchers: ${repoInfo.watchers}`}
+      />
+      <CardText>
+        {repoInfo.description}
+      </CardText>
+      <CommitsList commits={repoInfo.commits}/>
+    </Card>
+  </div>
 )
 
 const {arrayOf, number, shape, string, object} = PropTypes
