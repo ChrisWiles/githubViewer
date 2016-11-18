@@ -1339,4 +1339,4 @@ const list = [
 ]
 
 
-//export const genRandomReactLink = () => list[Math.floor(Math.random() * list.length)]
+export const genRandomReactLink = () => list[Math.floor(Math.random() * list.length)]
