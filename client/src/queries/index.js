@@ -80,6 +80,52 @@ const GET_REPO_INFO = gql `
   }
 `
 
+const GET_OWNER_INFO = gql `
+  query GetInfo($login: String!) {
+    repositoryOwner(login: $login) {
+      avatarURL
+      ... on User {
+        bio
+        company
+        email
+        location
+        name
+        websiteURL
+        followers(first: 30) {
+          edges {
+            node {
+              name
+              login
+              avatarURL
+            }
+          }
+        }
+        organizations(first: 30) {
+          totalCount
+          edges {
+            node {
+              name
+            }
+          }
+        }
+        following(first: 30) {
+          edges {
+            node {
+              name
+              login
+              avatarURL
+            }
+          }
+        }
+      }
+    }
+  }
+`
+export const getOwnerInfo = ({login}) => ({
+  query: GET_OWNER_INFO,
+  variables: {login}
+})
+
 export const getReposByLogin = ({login}) => ({
   query: GET_REPOS,
   variables: {login}
