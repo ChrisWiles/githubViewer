@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import {GITHUB_ICON_POPOVER_TOGGLE, SET_GITHUB_ICON_POPOVER_ANCHOR} from '../constants/actionTypes'
 
 /*
@@ -10,7 +10,7 @@ import {GITHUB_ICON_POPOVER_TOGGLE, SET_GITHUB_ICON_POPOVER_ANCHOR} from '../con
 
 const initialState = {
   isOpen: false,
-  anchorEl: ''
+  anchorEl: <div></div>
 }
 
 function gitHubIconPopover(state = initialState, action) {

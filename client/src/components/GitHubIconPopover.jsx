@@ -3,11 +3,12 @@ import {Popover, PopoverAnimationVertical} from 'material-ui/Popover'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 
+// TODO: change Popover to bottom menu
+
 const GitHubIconPopover = ({isOpen, anchorEl, toggle}) => {
 
   const handleRequestClose = () => toggle()
-  
-  console.log(isOpen, anchorEl)
+
   return (
     <div>
       <Popover
