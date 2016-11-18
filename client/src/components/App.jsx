@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import SlideDrawer from './SlideDrawer'
 import SmartLogin from '../containers/SmartLogin'
 
-const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSlideDrawer, requestLogin, navTitle, isLoggedIn}) => (
+const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSlideDrawer, requestLogin, navTitle, isLoggedIn, gitHubIconPopoverToggle, gitHubIconPopoverSetAnchor}) => (
   <div>
     <NavBar
       handleToggle={toggleSlideDrawer}
@@ -11,6 +11,8 @@ const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSl
       title={navTitle}
       isLogin={isLoggedIn}
       isLoggingIn={isLoggingIn}
+      gitHubIconPopoverToggle={gitHubIconPopoverToggle}
+      gitHubIconPopoverSetAnchor={gitHubIconPopoverSetAnchor}
     />
     <SlideDrawer
       handleToggle={toggleSlideDrawer}
@@ -31,7 +33,9 @@ App.propTypes = {
   navTitle: PropTypes.string.isRequired,
   requestLogin: PropTypes.func.isRequired,
   setNavBarTitle: PropTypes.func.isRequired,
-  toggleSlideDrawer: PropTypes.func.isRequired
+  toggleSlideDrawer: PropTypes.func.isRequired,
+  gitHubIconPopoverToggle: PropTypes.func.isRequired,
+  gitHubIconPopoverSetAnchor: PropTypes.func.isRequired
 }
 
 

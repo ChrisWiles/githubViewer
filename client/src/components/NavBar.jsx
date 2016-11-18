@@ -5,6 +5,7 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 import Menu from 'material-ui/svg-icons/navigation/menu'
 import SmartSearchBar from '../containers/SmartSearchBar'
 import GitHubIcon from './GitHubIcon'
+import SmartGitHubIconPopover from '../containers/SmartGitHubIconPopover'
 // TODO: display username and GitHub logo after sign in
 
 
@@ -18,29 +19,43 @@ const label = (isLogin, isLoggingIn) => {
 }
 
 
-const NavBar = ({title, handleToggle, isLogin, isLoggingIn}) => (
-  <Toolbar>
-    <ToolbarGroup firstChild={true}>
-      <IconButton onTouchTap={handleToggle}><Menu/></IconButton>
-      <ToolbarTitle text={title}/>
-    </ToolbarGroup>
-    <SmartSearchBar/>
-    <ToolbarGroup lastChild={true}>
+const NavBar = ({title, handleToggle, isLogin, isLoggingIn, gitHubIconPopoverToggle, gitHubIconPopoverSetAnchor}) => {
 
-      <RaisedButton
-        primary={true}
-        label={label(isLogin, isLoggingIn)}
-        icon={<GitHubIcon/>}
-      />
-    </ToolbarGroup>
-  </Toolbar>
-)
+  const handleTouchTap = (e) => {
+    // This prevents ghost click.
+    e.preventDefault()
+    gitHubIconPopoverSetAnchor(e.currentTarget)
+    gitHubIconPopoverToggle()
+  }
+
+  return  (
+      <Toolbar>
+        <ToolbarGroup firstChild={true}>
+          <IconButton onTouchTap={handleToggle}><Menu/></IconButton>
+          <ToolbarTitle text={title}/>
+        </ToolbarGroup>
+        <SmartSearchBar/>
+        <ToolbarGroup lastChild={true}>
+
+          <RaisedButton
+            primary={true}
+            label={label(isLogin, isLoggingIn)}
+            icon={<GitHubIcon/>}
+            onTouchTap={handleTouchTap}
+          />
+          <SmartGitHubIconPopover/>
+        </ToolbarGroup>
+      </Toolbar>
+    )
+}
 
 NavBar.propTypes = {
   title: PropTypes.string.isRequired,
   handleToggle: PropTypes.func.isRequired,
   isLogin: PropTypes.bool.isRequired,
-  isLoggingIn: PropTypes.bool.isRequired
+  isLoggingIn: PropTypes.bool.isRequired,
+  gitHubIconPopoverToggle: PropTypes.func.isRequired,
+  gitHubIconPopoverSetAnchor: PropTypes.func.isRequired
 }
 
 export default NavBar
