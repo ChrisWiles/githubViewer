@@ -11,13 +11,13 @@ import {
   OWNER_INFO_FAILURE
 } from '../constants/actionTypes'
 
-import {getReposByLogin} from '../queries'
+import {getOwnerInfo} from '../queries'
 import {client} from '../createApolloClient'
 
 export const requestOwnerInfo = (login) => {
   return dispatch => {
     dispatch({type: OWNER_INFO_REQUEST, login})
-    return client.query(getReposByLogin({login}))
+    return client.query(getOwnerInfo({login}))
       .then(data => dispatch({type: OWNER_INFO_SUCCESS, payload: data}))
       .catch(err => dispatch({type: OWNER_INFO_FAILURE, err}))
   }
