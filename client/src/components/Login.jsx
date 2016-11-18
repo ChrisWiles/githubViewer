@@ -89,7 +89,7 @@ class Login extends Component {
               label="Login"
               primary={true}
               onTouchTap={this.handleSubmit}
-              icon={< GitHubIcon />}/>
+              icon={<GitHubIcon/>}/>
             <br/>
           </div>
         </Paper>
