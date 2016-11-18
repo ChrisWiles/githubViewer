@@ -15,11 +15,20 @@ const titleStyle = {
   display: 'flex',
   justifyContent: 'center',
   textAlign: 'center',
+  margin: '1.33em',
+  color: '#05828F',
+  fontWeight: 800
+}
+const descriptionStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  textAlign: 'center',
   margin: '1.33em'
 }
 
+
 const iconButtonStyle = {
-  marginTop: '-15px',
+  marginTop: '-12px',
   marginRight: '-10px'
 }
 
@@ -42,7 +51,7 @@ const RepositoryPage = ({repoInfo, title}) => (
 
       {/* {`Watch: ${repoInfo.watchers}`} */}
 
-        <div style={titleStyle}>
+        <div style={descriptionStyle}>
           {repoInfo.description}
         </div>
       <Divider/>
