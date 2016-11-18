@@ -18,33 +18,32 @@ const label = (isLogin, isLoggingIn) => {
 }
 
 
-const NavBar = ({title, handleToggle, isLogin, isLoggingIn, toggleSnackBar}) => {
+const NavBar = ({title, handleToggle, isLogin, isLoggingIn, toggleSnackBar}) => (
+  <Toolbar>
+    <ToolbarGroup firstChild={true}>
+      <IconButton onTouchTap={handleToggle}><Menu/></IconButton>
+      <ToolbarTitle text={title}/>
+    </ToolbarGroup>
+    <SmartSearchBar/>
+    <ToolbarGroup lastChild={true}>
+      <RaisedButton
+        primary={true}
+        label={label(isLogin, isLoggingIn)}
+        icon={<GitHubIcon/>}
+        onTouchTap={toggleSnackBar}
+      />
+    </ToolbarGroup>
+  </Toolbar>
+)
 
-  return  (
-      <Toolbar>
-        <ToolbarGroup firstChild={true}>
-          <IconButton onTouchTap={handleToggle}><Menu/></IconButton>
-          <ToolbarTitle text={title}/>
-        </ToolbarGroup>
-        <SmartSearchBar/>
-        <ToolbarGroup lastChild={true}>
-          <RaisedButton
-            primary={true}
-            label={label(isLogin, isLoggingIn)}
-            icon={<GitHubIcon/>}
-            onTouchTap={toggleSnackBar}
-          />
-        </ToolbarGroup>
-      </Toolbar>
-    )
-}
+const {string, func, bool} = PropTypes
 
 NavBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  handleToggle: PropTypes.func.isRequired,
-  isLogin: PropTypes.bool.isRequired,
-  isLoggingIn: PropTypes.bool.isRequired,
-  toggleSnackBar: PropTypes.func.isRequired
+  title: string.isRequired,
+  handleToggle: func.isRequired,
+  isLogin: bool.isRequired,
+  isLoggingIn: bool.isRequired,
+  toggleSnackBar: func.isRequired
 }
 
 export default NavBar

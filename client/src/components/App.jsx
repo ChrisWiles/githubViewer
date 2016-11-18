@@ -25,19 +25,20 @@ const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSl
   </div>
 )
 
-App.propTypes = {
-  children: PropTypes.node,
-  isLoggedIn: PropTypes.bool.isRequired,
-  isLoggingIn: PropTypes.bool.isRequired,
-  isSlideDrawerOpen: PropTypes.bool.isRequired,
-  loginFailure: PropTypes.bool.isRequired,
-  navTitle: PropTypes.string.isRequired,
-  requestLogin: PropTypes.func.isRequired,
-  setNavBarTitle: PropTypes.func.isRequired,
-  toggleSlideDrawer: PropTypes.func.isRequired,
-  contactSnackbarisOpen: PropTypes.bool.isRequired,
-  toggleSnackBar: PropTypes.func.isRequired
-}
+const {node, bool, string, func} = PropTypes
 
+App.propTypes = {
+  children: node,
+  isLoggedIn: bool.isRequired,
+  isLoggingIn: bool.isRequired,
+  isSlideDrawerOpen: bool.isRequired,
+  loginFailure: bool.isRequired,
+  navTitle: string.isRequired,
+  requestLogin: func.isRequired,
+  setNavBarTitle: func.isRequired,
+  toggleSlideDrawer: func.isRequired,
+  contactSnackbarisOpen: bool.isRequired,
+  toggleSnackBar: func.isRequired
+}
 
 export default App
