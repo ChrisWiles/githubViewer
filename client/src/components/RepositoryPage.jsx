@@ -1,23 +1,6 @@
 import React, {PropTypes} from 'react'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
-import {List, ListItem} from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import Divider from 'material-ui/Divider'
-
-const CommitsList = ({commits}) => {
-  const listItems = commits.map(commit => (
-    <div key={commit.date}>
-      <ListItem
-        primaryText={commit.login}
-        secondaryText={commit.email}
-        rightAvatar={<Avatar src={commit.avatarURL} />}
-      />
-      <Divider/>
-    </div>
-  ))
-
-  return <List children={listItems}/>
-}
+import CommitsList from './CommitsList'
 
 const RepositoryPage = ({repoInfo}) => (
   <Card >
