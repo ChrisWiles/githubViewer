@@ -1,6 +1,6 @@
 # Github Viewer
 
-A React/Redux UI consuming the GitHub GraphQL API
+Uses Apollo to connect the client with GitHub’s GraphQL. The queries are saved into the redux store and the UI is rendered with React and Material UI components. 
 
 See Live [Github Viewer](https://github--viewer.herokuapp.com/)
 
