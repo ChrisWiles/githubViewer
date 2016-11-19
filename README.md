@@ -46,4 +46,4 @@ $ npm start
 ```
 
 
-![gif](http://i.imgur.com/chriswiles.gif)
+![Imgur](http://i.imgur.com/4o2p9q6.gif)
