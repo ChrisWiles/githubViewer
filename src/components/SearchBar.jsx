@@ -30,6 +30,7 @@ class SearchBar extends Component {
   handleSuccessReq(login, name) {
     const url = `${login}/${name}`
     this.props.setNavBarTitle(url)
+    this.props.setRepoURL(url)
     this.props.resetSearch()
     browserHistory.push(`/${url}`)
   }

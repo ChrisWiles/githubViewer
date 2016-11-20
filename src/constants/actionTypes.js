@@ -1,5 +1,4 @@
-export const REPO_NAME = "REPO_NAME"
-export const REPO_OWNER = "REPO_OWNER"
+export const REPO_URL = "REPO_URL"
 
 export const REPO_NAME_REQUEST = 'REPO_NAME_REQUEST'
 export const REPO_NAME_SUCCESS = 'REPO_NAME_SUCCESS'
