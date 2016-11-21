@@ -12,11 +12,6 @@ const style = {
     display: 'flex',
     justifyContent: 'center'
   },
-  progress: {
-    margin: '20px 100px',
-    display: 'flex',
-    justifyContent: 'center'
-  },
   title: {
     display: 'flex',
     justifyContent: 'center',
@@ -40,7 +35,7 @@ const style = {
 const RepositoryPage = ({repoInfo, title, loading}) => {
     if(loading) {
       return (
-        <div style={style.progress}>
+        <div style={style.root}>
            <CircularProgress size={3} />
         </div>
       )

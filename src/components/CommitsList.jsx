@@ -4,28 +4,52 @@ import Divider from 'material-ui/Divider'
 import moment from 'moment'
 import Paper from 'material-ui/Paper'
 
-const rootStyle = {
-  display: 'flex',
-  justifyContent: 'center'
-}
 
-const commitStyle = {
-  display: 'inlineFlex'
+const style = {
+  root: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  commit: {
+    display: 'inlineFlex'
+  },
+  avatar: {
+    margin: '5px',
+    position: 'absolute'
+  },
+  header: {
+    display: 'inline',
+  },
+  msg: {
+    color: "rgba(255, 255, 255, 0.44)",
+    display: 'block',
+    marginTop: '20px',
+    marginBottom: '8px'
+  },
+  text: {
+    marginLeft: '55px'
+  }
 }
 
 const CommitsList = ({commits}) => {
 
   const listItems = commits.map((commit, i) => (
-    <Paper zDepth={0} key={i} style={commitStyle}>
-      <Avatar src={commit.avatarURL}/>
-      {`${commit.login} <${commit.email}> commited ${moment(commit.date).fromNow()}`}
-      {commit.message}
+    <Paper zDepth={0} key={i} style={style.commit}>
+      <Avatar src={commit.avatarURL} style={style.avatar}/>
+        <div style={style.text}>
+          <div style={style.header}>
+            {`${commit.login} <${commit.email}> commited ${moment(commit.date).fromNow()}`}
+          </div>
+          <div style={style.msg}>
+            {commit.message}
+          </div>
+        </div>
       <Divider/>
     </Paper>
   ))
 
   return (
-    <div style={rootStyle}>
+    <div style={style.root}>
       <Paper zDepth={2}>
         {listItems}
       </Paper>

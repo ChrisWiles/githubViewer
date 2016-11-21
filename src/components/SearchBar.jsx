@@ -5,7 +5,6 @@ import {browserHistory} from 'react-router'
 import {genRandomReactLink} from '../reactLinksData'
 
 // TODO: if searchbox is clicked and !loggedIn => popup login modal
-// hmm add text input to redux state or not...
 
 class SearchBar extends Component {
   state = {
