@@ -34,11 +34,13 @@ const style = {
 
 
 
-const CommitsList = ({commits, setNavBarTitle}) => {
+const CommitsList = ({commits, setNavBarTitle, requestAuthor}) => {
 
   const handleClick = (login) => {
-    browserHistory.push(`/${login}`)
-    setNavBarTitle(login)
+    requestAuthor({login}).then(data => {
+      browserHistory.push(`/${login}`)
+      setNavBarTitle(login)
+    })
   }
 
   const listItems = commits.map((commit, i) => (
@@ -68,7 +70,7 @@ const CommitsList = ({commits, setNavBarTitle}) => {
 }
 
 
-const {arrayOf, shape, string, object} = PropTypes
+const {arrayOf, shape, string, object, func} = PropTypes
 
 CommitsList.propTypes = {
   commits: arrayOf(shape({
@@ -79,7 +81,9 @@ CommitsList.propTypes = {
     login: string.isRequired,
     message: string.isRequired,
     name: string.isRequired
-  }).isRequired).isRequired
+  }).isRequired).isRequired,
+  setNavBarTitle: func.isRequired,
+  requestAuthor: func.isRequired
 }
 
 export default CommitsList

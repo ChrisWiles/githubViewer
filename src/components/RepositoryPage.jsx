@@ -32,7 +32,7 @@ const style = {
   }
 }
 
-const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle}) => {
+const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle, requestAuthor}) => {
   if(loading) {
     return (
       <div style={style.root}>
@@ -66,7 +66,11 @@ const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle}) => {
             Commits
           </h4>
           <Divider/>
-          <CommitsList commits={repoInfo.commits} setNavBarTitle={setNavBarTitle}/>
+          <CommitsList
+            commits={repoInfo.commits}
+            setNavBarTitle={setNavBarTitle}
+            requestAuthor={requestAuthor}
+          />
         </Paper>
       </div>
     )
@@ -90,7 +94,8 @@ RepositoryPage.propTypes = {
       stargazers: number.isRequired,
       watchers: number.isRequired
    }).isRequired,
-   setNavBarTitle: func.isRequired
+   setNavBarTitle: func.isRequired,
+   requestAuthor: func.isRequired
 }
 
 export default RepositoryPage
