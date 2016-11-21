@@ -59,7 +59,7 @@ class Login extends Component {
   handleKeyUp = (e) => e.keyCode === 13 && this.handleSubmit()
 
   render() {
-    if(this.props.loading) {
+    if (this.props.loading) {
       return (
         <div style={styles.loginWindow}>
            <CircularProgress size={3} />
