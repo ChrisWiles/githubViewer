@@ -4,67 +4,79 @@ import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import Star from 'material-ui/svg-icons/action/grade'
 import IconButton from 'material-ui/IconButton'
+import CircularProgress from 'material-ui/CircularProgress'
 
-const rootStyle = {
-  margin: '20px 100px',
-  display: 'flex',
-  justifyContent: 'center'
+const style = {
+  root: {
+    margin: '20px 100px',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  progress: {
+    margin: '20px 100px',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
+    margin: '1.33em',
+    color: '#05828F',
+    fontWeight: 800
+  },
+  description: {
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
+    margin: '1.33em'
+  },
+  iconButton: {
+    marginTop: '-12px',
+    marginRight: '-10px'
+  }
 }
 
-const titleStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  textAlign: 'center',
-  margin: '1.33em',
-  color: '#05828F',
-  fontWeight: 800
-}
-const descriptionStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  textAlign: 'center',
-  margin: '1.33em'
-}
-
-
-const iconButtonStyle = {
-  marginTop: '-12px',
-  marginRight: '-10px'
-}
-
-const RepositoryPage = ({repoInfo, title}) => (
-
-  <div style={rootStyle}>
-
-    <Paper zDepth={2}>
-    <div style={titleStyle}>
-      {title}
-      <IconButton tooltip="Stargazers" style={iconButtonStyle}>
-        <Star
-          color={'#05828F'}
-          hoverColor={'#f50057'}
-        />
-      </IconButton>
-      {repoInfo.stargazers}
-    </div>
-
-
-      {/* {`Watch: ${repoInfo.watchers}`} */}
-
-        <div style={descriptionStyle}>
-          {repoInfo.description}
+const RepositoryPage = ({repoInfo, title, loading}) => {
+    if(loading) {
+      return (
+        <div style={style.progress}>
+           <CircularProgress size={3} />
         </div>
-      <Divider/>
-      <h4 style={{textAlign: 'center'}}>
-        Commits
-      </h4>
-      <Divider/>
-      <CommitsList commits={repoInfo.commits}/>
-    </Paper>
-  </div>
+      )
+    } else {
+      return (
+        <div style={style.root}>
 
-)
+          <Paper zDepth={2}>
+          <div style={style.title}>
+            {title}
+            <IconButton tooltip="Stargazers" style={style.iconButton}>
+              <Star
+                color={'#05828F'}
+                hoverColor={'#f50057'}
+              />
+            </IconButton>
+            {repoInfo.stargazers}
+          </div>
 
+
+            {/* {`Watch: ${repoInfo.watchers}`} */}
+
+              <div style={style.description}>
+                {repoInfo.description}
+              </div>
+            <Divider/>
+            <h4 style={{textAlign: 'center'}}>
+              Commits
+            </h4>
+            <Divider/>
+            <CommitsList commits={repoInfo.commits}/>
+          </Paper>
+        </div>
+      )
+    }
+}
 
 const {arrayOf, number, shape, string, object} = PropTypes
 

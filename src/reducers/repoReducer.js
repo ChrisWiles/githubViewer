@@ -16,6 +16,7 @@ import {
 */
 
 const initialState = {
+   loading: false,
    repos: [],
    totalCount: 0,
    repoSearchLoading: false,
@@ -74,23 +75,27 @@ function repos(state = initialState, action) {
     case REPO_NAME_REQUEST:
       return {
         ...state,
-        repoName: action.name
+        repoName: action.name,
+        loading: true
       }
     case REPO_NAME_SUCCESS:
     const info = action.payload.data.repositoryOwner.repository
       return {
         ...state,
-        repoInfo: removeRepoInfoNesting(info)
+        repoInfo: removeRepoInfoNesting(info),
+        loading: false
       }
     case REPO_NAME_FAILURE:
       return {
         ...state,
-        repoName: ''
+        repoName: '',
+        loading: false
       }
     case RESET_SEARCH:
       return {
         ...initialState,
-        repoInfo: state.repoInfo
+        repoInfo: state.repoInfo,
+        loading: state.loading
       }
     default:
       return state
