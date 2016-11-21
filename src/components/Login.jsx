@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import GitHubIcon from './GitHubIcon'
 import AppBar from 'material-ui/AppBar'
 import Paper from 'material-ui/Paper'
+import CircularProgress from 'material-ui/CircularProgress'
 
 const styles = {
   loginWindow: {
@@ -26,6 +27,7 @@ const styles = {
     margin: 15
   }
 }
+
 
 
 // https://developer.github.com/early-access/graphql/
@@ -57,45 +59,54 @@ class Login extends Component {
   handleKeyUp = (e) => e.keyCode === 13 && this.handleSubmit()
 
   render() {
-    return (
-      <div style={styles.loginWindow}>
-        <Paper style={styles.paper} zDepth={2}>
-          <AppBar title="Welcome" showMenuIconButton={false}/>
-          <div onKeyUp={this.handleKeyUp}>
-            <br/>
-            <TextField
-              hintText="Username"
-              errorText={this.state.userError}
-              hintStyle={styles.hintStyle}
-              value={this.state.user}
-              onChange={this.handleChangeUser}/>
-            <br/>
-            <br/>
-            <TextField
-              hintText="Password"
-              type="password"
-              errorText={this.state.passError}
-              hintStyle={styles.hintStyle}
-              value={this.state.pass}
-              onChange={this.handleChangePass}/>
-            <br/>
-            <br/>
-            <RaisedButton
-              style={styles.signInButton}
-              label="Login"
-              primary={true}
-              onTouchTap={this.handleSubmit}
-              icon={<GitHubIcon/>}/>
-            <br/>
-          </div>
-        </Paper>
-      </div>
-    )
+    if(this.props.loading) {
+      return (
+        <div style={styles.loginWindow}>
+           <CircularProgress size={3} />
+        </div>
+      )
+    } else {
+      return (
+        <div style={styles.loginWindow}>
+          <Paper style={styles.paper} zDepth={2}>
+            <AppBar title="Welcome" showMenuIconButton={false}/>
+            <div onKeyUp={this.handleKeyUp}>
+              <br/>
+              <TextField
+                hintText="Username"
+                errorText={this.state.userError}
+                hintStyle={styles.hintStyle}
+                value={this.state.user}
+                onChange={this.handleChangeUser}/>
+              <br/>
+              <br/>
+              <TextField
+                hintText="Password"
+                type="password"
+                errorText={this.state.passError}
+                hintStyle={styles.hintStyle}
+                value={this.state.pass}
+                onChange={this.handleChangePass}/>
+              <br/>
+              <br/>
+              <RaisedButton
+                style={styles.signInButton}
+                label="Login"
+                primary={true}
+                onTouchTap={this.handleSubmit}
+                icon={<GitHubIcon/>}/>
+              <br/>
+            </div>
+          </Paper>
+        </div>
+      )
+    }
   }
 }
 
 Login.propTypes = {
-  requestLogin: PropTypes.func.isRequired
+  requestLogin: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default Login
