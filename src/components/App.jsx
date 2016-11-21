@@ -20,7 +20,7 @@ const App = ({children, setNavBarTitle, isSlideDrawerOpen, isLoggingIn, toggleSl
       setTitle={setNavBarTitle}
     />
     {/* child component will be rendered here */}
-    {isLoggedIn ? children : <Login requestLogin={requestLogin}/>}
+    {isLoggedIn ? children : <Login loading={isLoggingIn} requestLogin={requestLogin}/>}
   </div>
 )
 
