@@ -32,7 +32,7 @@ const style = {
   }
 }
 
-const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle, requestAuthor}) => {
+const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle, requestOwner}) => {
   if(loading) {
     return (
       <div style={style.root}>
@@ -69,7 +69,7 @@ const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle, requestAuthor
           <CommitsList
             commits={repoInfo.commits}
             setNavBarTitle={setNavBarTitle}
-            requestAuthor={requestAuthor}
+            requestOwner={requestOwner}
           />
         </Paper>
       </div>
@@ -95,7 +95,7 @@ RepositoryPage.propTypes = {
       watchers: number.isRequired
    }).isRequired,
    setNavBarTitle: func.isRequired,
-   requestAuthor: func.isRequired
+   requestOwner: func.isRequired
 }
 
 export default RepositoryPage

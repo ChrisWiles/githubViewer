@@ -14,7 +14,7 @@ import {
 import {getOwnerInfo} from '../queries'
 import {client} from '../createApolloClient'
 
-export const requestOwnerInfo = (login) => {
+export const requestOwner = (login) => {
   return dispatch => {
     dispatch({type: OWNER_INFO_REQUEST, login})
     return client.query(getOwnerInfo({login}))

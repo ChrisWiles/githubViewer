@@ -34,10 +34,10 @@ const style = {
 
 
 
-const CommitsList = ({commits, setNavBarTitle, requestAuthor}) => {
+const CommitsList = ({commits, setNavBarTitle, requestOwner}) => {
 
   const handleClick = (login) => {
-    requestAuthor({login}).then(data => {
+    requestOwner(login).then(data => {
       browserHistory.push(`/${login}`)
       setNavBarTitle(login)
     })
@@ -83,7 +83,7 @@ CommitsList.propTypes = {
     name: string.isRequired
   }).isRequired).isRequired,
   setNavBarTitle: func.isRequired,
-  requestAuthor: func.isRequired
+  requestOwner: func.isRequired
 }
 
 export default CommitsList

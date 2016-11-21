@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import RepositoryPage from '../components/RepositoryPage'
 import {setNavBarTitle} from '../actionCreators/UIActions'
-import {requestAuthor} from '../actionCreators/ownerActions'
+import {requestOwner} from '../actionCreators/ownerActions'
 
 const mapStateToProps = (state) => ({
   ...state.repos,
@@ -11,6 +11,6 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps, {
     setNavBarTitle,
-    requestAuthor
+    requestOwner
   }
 )(RepositoryPage)
