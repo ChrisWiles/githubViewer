@@ -3,15 +3,15 @@ import {Route} from 'react-router'
 
 import SmartApp from './containers/SmartApp'
 import SmartRepositoryPage from './containers/SmartRepositoryPage'
+// import SmartAuthorPage from './containers/SmartAuthorPage'
 
-// import Home from './components/Home'
+const Name = () => <h1>name</h1>
 
 export default (
   <Route path="/" component={SmartApp}>
-    {/* Show the dashboard at / */}
-    {/* <IndexRoute component={Home}/>
-    <Route path="projects" component={Projects}/>
-    <Route path="about" component={About}/> */}
+
+    {/* <IndexRoute component={Home}/>*/}
+    <Route path="/:user" component={Name}/>
     <Route path="/:org/:repoName" component={SmartRepositoryPage}/>
   </Route>
 )

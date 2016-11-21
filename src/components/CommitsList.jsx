@@ -3,7 +3,8 @@ import Avatar from 'material-ui/Avatar'
 import Divider from 'material-ui/Divider'
 import moment from 'moment'
 import Paper from 'material-ui/Paper'
-
+import IconButton from 'material-ui/IconButton'
+import {browserHistory} from 'react-router'
 
 const style = {
   root: {
@@ -27,15 +28,24 @@ const style = {
     marginBottom: '8px'
   },
   text: {
-    marginLeft: '55px'
+    marginLeft: '64px'
   }
 }
 
-const CommitsList = ({commits}) => {
+
+
+const CommitsList = ({commits, setNavBarTitle}) => {
+
+  const handleClick = (login) => {
+    browserHistory.push(`/${login}`)
+    setNavBarTitle(login)
+  }
 
   const listItems = commits.map((commit, i) => (
     <Paper zDepth={0} key={i} style={style.commit}>
-      <Avatar src={commit.avatarURL} style={style.avatar}/>
+      <IconButton tooltip={commit.name} style={{position: 'absolute'}} onTouchTap={handleClick.bind(this, commit.login)}>
+        <Avatar src={commit.avatarURL} style={style.avatar}/>
+      </IconButton>
         <div style={style.text}>
           <div style={style.header}>
             {`${commit.login} <${commit.email}> commited ${moment(commit.date).fromNow()}`}

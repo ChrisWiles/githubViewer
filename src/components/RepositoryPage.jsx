@@ -32,48 +32,48 @@ const style = {
   }
 }
 
-const RepositoryPage = ({repoInfo, title, loading}) => {
-    if(loading) {
-      return (
-        <div style={style.root}>
-           <CircularProgress size={3} />
+const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle}) => {
+  if(loading) {
+    return (
+      <div style={style.root}>
+         <CircularProgress size={3} />
+      </div>
+    )
+  } else {
+    return (
+      <div style={style.root}>
+
+        <Paper zDepth={2}>
+        <div style={style.title}>
+          {title}
+          <IconButton tooltip="Stargazers" style={style.iconButton}>
+            <Star
+              color={'#05828F'}
+              hoverColor={'#f50057'}
+            />
+          </IconButton>
+          {repoInfo.stargazers}
         </div>
-      )
-    } else {
-      return (
-        <div style={style.root}>
-
-          <Paper zDepth={2}>
-          <div style={style.title}>
-            {title}
-            <IconButton tooltip="Stargazers" style={style.iconButton}>
-              <Star
-                color={'#05828F'}
-                hoverColor={'#f50057'}
-              />
-            </IconButton>
-            {repoInfo.stargazers}
-          </div>
 
 
-            {/* {`Watch: ${repoInfo.watchers}`} */}
+          {/* {`Watch: ${repoInfo.watchers}`} */}
 
-              <div style={style.description}>
-                {repoInfo.description}
-              </div>
-            <Divider/>
-            <h4 style={{textAlign: 'center'}}>
-              Commits
-            </h4>
-            <Divider/>
-            <CommitsList commits={repoInfo.commits}/>
-          </Paper>
-        </div>
-      )
-    }
+            <div style={style.description}>
+              {repoInfo.description}
+            </div>
+          <Divider/>
+          <h4 style={{textAlign: 'center'}}>
+            Commits
+          </h4>
+          <Divider/>
+          <CommitsList commits={repoInfo.commits} setNavBarTitle={setNavBarTitle}/>
+        </Paper>
+      </div>
+    )
+  }
 }
 
-const {arrayOf, number, shape, string, object} = PropTypes
+const {arrayOf, number, shape, string, object, func} = PropTypes
 
 RepositoryPage.propTypes = {
    repoInfo: shape({
@@ -89,7 +89,8 @@ RepositoryPage.propTypes = {
       description: string.isRequired,
       stargazers: number.isRequired,
       watchers: number.isRequired
-   }).isRequired
+   }).isRequired,
+   setNavBarTitle: func.isRequired
 }
 
 export default RepositoryPage
