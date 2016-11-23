@@ -3,14 +3,12 @@ import CircularProgress from 'material-ui/CircularProgress'
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import Organizations from './Organizations'
-import Followers from './Followers'
-import Following from './Following'
+import FollowList from './FollowList'
 import OwnerContent from './OwnerContent'
 
 
 
 import data from '../queries/dummyData'
-
 
 const style = {
   root: {
@@ -37,8 +35,8 @@ const OwnerPage = ({loading}) => {
           <Divider/>
           <Organizations organizations={organizations}/>
           <Divider/>
-          <Followers followers={followers}/>
-          <Following following={following}/>
+          <FollowList title='Followers' data={followers}/>
+          <FollowList title='Following' data={following}/>
         </Paper>
       </div>
     )

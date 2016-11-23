@@ -22,6 +22,11 @@ const style = {
   }
 }
 
+const Text = ({text}) => (
+  <div style={style.text}>
+    {text}
+  </div>
+)
 
 
 const OwnerContent = ({login, avatarURL, bio, company, email, location, name, websiteURL, organizations, createdAt}) => (
@@ -30,29 +35,15 @@ const OwnerContent = ({login, avatarURL, bio, company, email, location, name, we
       <IconButton tooltip={name}>
         <Avatar src={avatarURL} backgroundColor='none' size={100}/>
       </IconButton>
-      <div style={style.text}>
-        {bio}
-      </div>
+      <Text text={bio}/>
     </div>
     <div style={style.right}>
-      <div style={style.text}>
-        {login}
-      </div>
-      <div style={style.text}>
-        {`Joined ${moment(createdAt).fromNow()}`}
-      </div>
-      <div style={style.text}>
-      {company}
-      </div>
-      <div style={style.text}>
-        {location}
-      </div>
-      <div style={style.text}>
-        {email}
-      </div>
-      <div style={style.text}>
-        {websiteURL}
-      </div>
+      <Text text={login}/>
+      <Text text={`Joined ${moment(createdAt).fromNow()}`}/>
+      <Text text={company}/>
+      <Text text={location}/>
+      <Text text={email}/>
+      <Text text={websiteURL}/>
     </div>
   </div>
 )
