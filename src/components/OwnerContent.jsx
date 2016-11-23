@@ -5,28 +5,54 @@ import Avatar from 'material-ui/Avatar'
 
 const style = {
   left: {
-    float: 'left'
+    float: 'left',
+    marginLeft: 20
   },
   right: {
-    float: 'right'
+    marginTop: 10,
+    float: 'right',
+    marginLeft: 50,
+    marginRight: 20
+  },
+  root: {
+    display: 'inline-block'
+  },
+  text: {
+    color: 'rgba(255, 255, 255, 0.5)'
   }
 }
 
+
+
 const OwnerContent = ({login, avatarURL, bio, company, email, location, name, websiteURL, organizations, createdAt}) => (
-  <div>
+  <div style={style.root}>
     <div style={style.left}>
       <IconButton tooltip={name}>
         <Avatar src={avatarURL} backgroundColor='none' size={100}/>
       </IconButton>
-      <p>{bio}</p>
+      <div style={style.text}>
+        {bio}
+      </div>
     </div>
     <div style={style.right}>
-      <p>{login}</p>
-      <p>{`Joined ${moment(createdAt).fromNow()}`}</p>
-      <p>{company}</p>
-      <p>{email}</p>
-      <p>{location}</p>
-      <p>{websiteURL}</p>
+      <div style={style.text}>
+        {login}
+      </div>
+      <div style={style.text}>
+        {`Joined ${moment(createdAt).fromNow()}`}
+      </div>
+      <div style={style.text}>
+      {company}
+      </div>
+      <div style={style.text}>
+        {location}
+      </div>
+      <div style={style.text}>
+        {email}
+      </div>
+      <div style={style.text}>
+        {websiteURL}
+      </div>
     </div>
   </div>
 )

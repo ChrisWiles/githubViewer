@@ -61,7 +61,7 @@ const list = [
     login: 'gaearon',
     name: 'redux-thunk'
   }, {
-    login: 'gaearon',
+    login: 'reactjs',
     name: 'redux'
   }, {
     login: 'gaearon',

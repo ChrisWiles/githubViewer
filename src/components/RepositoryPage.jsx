@@ -33,10 +33,10 @@ const style = {
 }
 
 const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle, requestOwner}) => {
-  if(loading) {
+  if (loading) {
     return (
       <div style={style.root}>
-         <CircularProgress size={3} />
+        <CircularProgress size={3}/>
       </div>
     )
   } else {
@@ -44,33 +44,23 @@ const RepositoryPage = ({repoInfo, title, loading, setNavBarTitle, requestOwner}
       <div style={style.root}>
 
         <Paper zDepth={2}>
-        <div style={style.title}>
-          {title}
-          <IconButton tooltip="Stargazers" style={style.iconButton}>
-            <Star
-              color={'#05828F'}
-              hoverColor={'#f50057'}
-            />
-          </IconButton>
-          {repoInfo.stargazers}
-        </div>
+          <div style={style.title}>
+            {title}
+            <IconButton tooltip="Stargazers" style={style.iconButton}>
+              <Star color={'#05828F'} hoverColor={'#f50057'}/>
+            </IconButton>
+            {repoInfo.stargazers}
+          </div>
 
+          <div style={style.description}>
+            {repoInfo.description}
+          </div>
 
-          {/* {`Watch: ${repoInfo.watchers}`} */}
-
-            <div style={style.description}>
-              {repoInfo.description}
-            </div>
           <Divider/>
-          <h4 style={{textAlign: 'center'}}>
-            Commits
-          </h4>
+          <h4 style={{textAlign: 'center'}}>Commits</h4>
           <Divider/>
-          <CommitsList
-            commits={repoInfo.commits}
-            setNavBarTitle={setNavBarTitle}
-            requestOwner={requestOwner}
-          />
+
+          <CommitsList commits={repoInfo.commits} setNavBarTitle={setNavBarTitle} requestOwner={requestOwner}/>
         </Paper>
       </div>
     )

@@ -7,9 +7,7 @@ const style = {
     borderRadius: 'none'
   },
   root: {
-    position: 'fixed',
-    marginTop: 171,
-    marginLeft: -13
+    display: 'block'
   }
 }
 

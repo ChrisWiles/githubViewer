@@ -7,17 +7,24 @@ const style = {
     borderRadius: 'none'
   },
   root: {
-    display: 'flex'
+    display: 'block'
   },
   paper: {
-
+    width: '100%'
+  },
+  card: {
+    width: '100%'
+  },
+  title: {
+    textAlign: 'center'
   }
 }
 
 const Followers = ({followers}) => (
   <div style={style.root}>
-    <Card >
+    <Card style={style.card}>
       <CardHeader
+        titleStyle={style.title}
         title="Followers"
         actAsExpander={true}
         showExpandableButton={true}

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
 import Paper from 'material-ui/Paper'
-
+import Divider from 'material-ui/Divider'
 import Organizations from './Organizations'
 import Followers from './Followers'
 import Following from './Following'
@@ -17,18 +17,11 @@ const style = {
     margin: '20px 100px',
     display: 'flex',
     justifyContent: 'center'
-  },
-  paper: {
-    width: 450,
-    height: 236,
-    margin: 20,
-    display: 'inline-block',
-    padding: 10
   }
 }
 
 const OwnerPage = ({loading}) => {
-  const {followers, organizations} = data
+  const {followers, organizations, following} = data
 
   if(loading) {
     return (
@@ -39,10 +32,13 @@ const OwnerPage = ({loading}) => {
   } else {
     return (
       <div style={style.root}>
-        <Paper zDepth={2} style={style.paper}>
+        <Paper zDepth={2}>
           <OwnerContent {...data}/>
+          <Divider/>
           <Organizations organizations={organizations}/>
+          <Divider/>
           <Followers followers={followers}/>
+          <Following following={following}/>
         </Paper>
       </div>
     )
