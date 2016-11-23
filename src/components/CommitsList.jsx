@@ -37,10 +37,12 @@ const style = {
 const CommitsList = ({commits, setNavBarTitle, requestOwner}) => {
 
   const handleClick = (login) => {
-    requestOwner(login).then(data => {
-      browserHistory.push(`/${login}`)
-      setNavBarTitle(login)
-    })
+    if(login) {
+      requestOwner(login).then(data => {
+        browserHistory.push(`/${login}`)
+        setNavBarTitle(login)
+      })
+    }
   }
 
   const listItems = commits.map((commit, i) => (
