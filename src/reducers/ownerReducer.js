@@ -7,7 +7,6 @@ import {
 const initialState = {
   loading: false,
   failed: false,
-  owner: '',
   avatarURL: '',
   bio: '',
   company: '',
@@ -15,6 +14,7 @@ const initialState = {
   location: '',
   name: '',
   websiteURL: '',
+  login: '',
   followers: [{name: '', login: '', avatarURL: ''}],
   organizations: [{name: '', avatarURL: ''}],
   following: [{name: '', login: '', avatarURL: ''}]
@@ -48,7 +48,20 @@ function owner(state = initialState, action) {
   }
 }
 
-function removeNesting({avatarURL, bio, company, email, location, name, websiteURL, followers, organizations, following}) {
+
+function removeNesting({
+  avatarURL,
+  bio,
+  company,
+  email,
+  location,
+  name,
+  websiteURL,
+  followers,
+  organizations,
+  following,
+  login
+}) {
   return {
     avatarURL,
     bio,
@@ -57,6 +70,7 @@ function removeNesting({avatarURL, bio, company, email, location, name, websiteU
     location,
     name,
     websiteURL,
+    login,
     followers: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))],
     organizations: [...organizations.edges.map(ele => ({name: ele.node.name, avatarURL: ele.node.avatarURL}))],
     following: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))]

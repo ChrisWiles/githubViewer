@@ -8,6 +8,7 @@ const data = {
       "location": "Austin, TX",
       "name": "Christopher Wiles",
       "websiteURL": "https://chriswiles.github.io/",
+      "login": "ChrisWiles",
       "followers": {
         "edges": [
           {
@@ -393,7 +394,8 @@ function removeNesting({
   websiteURL,
   followers,
   organizations,
-  following
+  following,
+  login
 }) {
   return {
     avatarURL,
@@ -403,6 +405,7 @@ function removeNesting({
     location,
     name,
     websiteURL,
+    login,
     followers: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))],
     organizations: [...organizations.edges.map(ele => ({name: ele.node.name, avatarURL: ele.node.avatarURL}))],
     following: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))]
