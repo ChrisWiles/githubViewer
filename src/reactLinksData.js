@@ -916,9 +916,6 @@ const list = [
     login: 'natew',
     name: 'reactor-demo'
   }, {
-    login: 'newtriks',
-    name: 'generator-react-webpack'
-  }, {
     login: 'ngokevin',
     name: 'react-file-reader-input'
   }, {

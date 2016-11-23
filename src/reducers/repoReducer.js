@@ -79,12 +79,21 @@ function repos(state = initialState, action) {
         loading: true
       }
     case REPO_NAME_SUCCESS:
+    
     const info = action.payload.data.repositoryOwner.repository
+    if(info) {
       return {
         ...state,
         repoInfo: removeRepoInfoNesting(info),
         loading: false
       }
+    } else {
+      return {
+        ...state,
+        loading: false
+      }
+    }
+
     case REPO_NAME_FAILURE:
       return {
         ...state,
