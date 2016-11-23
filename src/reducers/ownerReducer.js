@@ -7,7 +7,17 @@ import {
 const initialState = {
   loading: false,
   failed: false,
-  owner: ''
+  owner: '',
+  avatarURL: '',
+  bio: '',
+  company: '',
+  email: '',
+  location: '',
+  name: '',
+  websiteURL: '',
+  followers: [],
+  organizations: [],
+  following: []
 }
 
 function owner(state = initialState, action) {
@@ -21,8 +31,10 @@ function owner(state = initialState, action) {
         author: action.login
       }
     case OWNER_INFO_SUCCESS:
+    const info = action.payload.data.repositoryOwner
       return {
         ...state,
+        ...removeNesting(info),
         loading: false
       }
     case OWNER_INFO_FAILURE:
@@ -33,6 +45,21 @@ function owner(state = initialState, action) {
       }
     default:
       return state
+  }
+}
+
+function removeNesting({avatarURL, bio, company, email, location, name, websiteURL, followers, organizations, following}) {
+  return {
+    avatarURL,
+    bio,
+    company,
+    email,
+    location,
+    name,
+    websiteURL,
+    followers: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))],
+    organizations: [...organizations.edges.map(ele => ({name: ele.node.name}))],
+    following: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))]
   }
 }
 
