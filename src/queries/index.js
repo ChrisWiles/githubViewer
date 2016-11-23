@@ -105,6 +105,7 @@ const GET_OWNER_INFO = gql `
           edges {
             node {
               name
+              avatarURL
             }
           }
         }
