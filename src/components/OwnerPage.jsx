@@ -1,5 +1,14 @@
 import React, {PropTypes} from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
+import data from '../queries/dummyData'
+
+const style = {
+  root: {
+    margin: '20px 100px',
+    display: 'flex',
+    justifyContent: 'center'
+  }
+}
 
 const OwnerPage = ({loading}) => {
   if(loading) {
@@ -11,7 +20,7 @@ const OwnerPage = ({loading}) => {
   } else {
     return (
       <div>
-
+        {console.log(data)}
       </div>
     )
   }
@@ -20,6 +29,6 @@ const OwnerPage = ({loading}) => {
 
 
 OwnerPage.propTypes = {
-
+  loading: PropTypes.bool.isRequired
 }
 export default OwnerPage
