@@ -15,9 +15,9 @@ const initialState = {
   location: '',
   name: '',
   websiteURL: '',
-  followers: [],
-  organizations: [],
-  following: []
+  followers: [{name: '', login: '', avatarURL: ''}],
+  organizations: [{name: ''}],
+  following: [{name: '', login: '', avatarURL: ''}]
 }
 
 function owner(state = initialState, action) {
