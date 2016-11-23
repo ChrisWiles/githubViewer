@@ -34,7 +34,7 @@ const list = [
     login: 'facebook',
     name: 'react-devtools'
   }, {
-    login: 'facebook',
+    login: 'reactjs',
     name: 'react-art'
   }, {
     login: 'facebook',

@@ -5,6 +5,7 @@ import {
 } from '../constants/actionTypes'
 
 const initialState = {
+  createdAt: '',
   loading: false,
   failed: false,
   avatarURL: '',
@@ -50,6 +51,7 @@ function owner(state = initialState, action) {
 
 
 function removeNesting({
+  createdAt,
   avatarURL,
   bio,
   company,
@@ -63,6 +65,7 @@ function removeNesting({
   login
 }) {
   return {
+    createdAt,
     avatarURL,
     bio,
     company,

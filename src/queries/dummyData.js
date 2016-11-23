@@ -9,6 +9,7 @@ const data = {
       "name": "Christopher Wiles",
       "websiteURL": "https://chriswiles.github.io/",
       "login": "ChrisWiles",
+      "createdAt": "2014-10-30T01:28:53Z",
       "followers": {
         "edges": [
           {
@@ -385,6 +386,7 @@ const data = {
 }
 
 function removeNesting({
+  createdAt,
   avatarURL,
   bio,
   company,
@@ -398,6 +400,7 @@ function removeNesting({
   login
 }) {
   return {
+    createdAt,
     avatarURL,
     bio,
     company,

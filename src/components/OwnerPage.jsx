@@ -1,12 +1,13 @@
 import React, {PropTypes} from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
 import Paper from 'material-ui/Paper'
-import Divider from 'material-ui/Divider'
-import Avatar from 'material-ui/Avatar'
-import IconButton from 'material-ui/IconButton'
+
 import Organizations from './Organizations'
 import Followers from './Followers'
 import Following from './Following'
+import OwnerContent from './OwnerContent'
+
+
 
 import data from '../queries/dummyData'
 
@@ -19,19 +20,15 @@ const style = {
   },
   paper: {
     width: 450,
+    height: 236,
     margin: 20,
-    display: 'inline-block'
-  },
-  left: {
-    float: 'left'
-  },
-  right: {
-    float: 'right'
+    display: 'inline-block',
+    padding: 10
   }
 }
 
 const OwnerPage = ({loading}) => {
-  const {login, avatarURL, bio, company, email, location, name, websiteURL, organizations} = data
+  const {followers, organizations} = data
 
   if(loading) {
     return (
@@ -43,40 +40,13 @@ const OwnerPage = ({loading}) => {
     return (
       <div style={style.root}>
         <Paper zDepth={2} style={style.paper}>
-          <div style={style.left}>
-            <IconButton tooltip={name}>
-              <Avatar src={avatarURL} backgroundColor='none' size={100}/>
-            </IconButton>
-            <p>{bio}</p>
-          </div>
-          <div style={style.right}>
-            <p>{login}</p>
-            <p>{company}</p>
-            <p>{email}</p>
-            <p>{location}</p>
-            <p>{websiteURL}</p>
-          </div>
+          <OwnerContent {...data}/>
           <Organizations organizations={organizations}/>
+          <Followers followers={followers}/>
         </Paper>
       </div>
     )
   }
-}
-
-const initialState = {
-  loading: false,
-  failed: false,
-  avatarURL: '',
-  bio: '',
-  company: '',
-  email: '',
-  location: '',
-  name: '',
-  websiteURL: '',
-  login: '',
-  followers: [{name: '', login: '', avatarURL: ''}],
-  organizations: [{name: '', avatarURL: ''}],
-  following: [{name: '', login: '', avatarURL: ''}]
 }
 
 OwnerPage.propTypes = {
