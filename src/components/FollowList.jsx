@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import {Card, CardHeader} from 'material-ui/Card'
+import {Card, CardHeader, CardMedia} from 'material-ui/Card'
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import Avatar from 'material-ui/Avatar'
@@ -9,7 +9,8 @@ const style = {
     borderRadius: 'none'
   },
   root: {
-    display: 'block'
+    display: 'block',
+    maxWidth: 500
   },
   paper: {
     width: '100%'
@@ -19,6 +20,10 @@ const style = {
   },
   title: {
     textAlign: 'center'
+  },
+  cardMedia: {
+    boxShadow: 'none',
+    width: 'inherit'
   }
 }
 
@@ -26,7 +31,7 @@ const AvatarList = ({data}) => (
   <div>
     {
       data.map(item => (
-        <IconButton tooltip={item.name + ' aka ' + item.login}>
+        <IconButton tooltip={item.name + ' aka ' + item.login} key={item.login}>
           <Avatar src={item.avatarURL} backgroundColor='none'/>
         </IconButton>
       ))
@@ -43,9 +48,11 @@ const FollowList = ({title, data}) => (
         actAsExpander={true}
         showExpandableButton={true}
       />
-      <Paper zDepth={2} style={style.paper} expandable={true}>
-        <AvatarList data={data}/>
-      </Paper>
+      <CardMedia expandable={true} style={style.cardMedia}>
+        <Paper zDepth={2} style={style.paper} >
+          <AvatarList data={data}/>
+        </Paper>
+      </CardMedia>
     </Card>
   </div>
 )

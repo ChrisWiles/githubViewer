@@ -36,6 +36,7 @@ const OwnerPage = ({loading}) => {
           <Organizations organizations={organizations}/>
           <Divider/>
           <FollowList title='Followers' data={followers}/>
+          <Divider/>
           <FollowList title='Following' data={following}/>
         </Paper>
       </div>

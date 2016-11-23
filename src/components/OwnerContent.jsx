@@ -15,7 +15,8 @@ const style = {
     marginRight: 20
   },
   root: {
-    display: 'inline-block'
+    display: 'inline-block',
+    width: 500
   },
   text: {
     color: 'rgba(255, 255, 255, 0.5)'
