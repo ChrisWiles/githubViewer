@@ -85,9 +85,6 @@ const list = [
     login: 'KnisterPeter',
     name: 'jreact'
   }, {
-    login: 'Kureev',
-    name: 'react-native-side-menu'
-  }, {
     login: 'KyleAMathews',
     name: 'react-sparkline'
   }, {

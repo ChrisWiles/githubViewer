@@ -1,5 +1,5 @@
-const data =  {
-  "data" : {
+const data = {
+  "data": {
     "repositoryOwner": {
       "avatarURL": "https://avatars2.githubusercontent.com/u/9455409?v=3",
       "bio": "Javascript Developer",
@@ -168,23 +168,28 @@ const data =  {
         "edges": [
           {
             "node": {
-              "name": "MakerSquare"
+              "name": "MakerSquare",
+              "avatarURL": "https://avatars0.githubusercontent.com/u/4218375?v=3"
             }
           }, {
             "node": {
-              "name": "makersquare-labs"
+              "name": "makersquare-labs",
+              "avatarURL": "https://avatars1.githubusercontent.com/u/10677354?v=3"
             }
           }, {
             "node": {
-              "name": "striking-lunatics"
+              "name": "striking-lunatics",
+              "avatarURL": "https://avatars2.githubusercontent.com/u/20342382?v=3"
             }
           }, {
             "node": {
-              "name": "WaterlooATX"
+              "name": "WaterlooATX",
+              "avatarURL": "https://avatars1.githubusercontent.com/u/20668060?v=3"
             }
           }, {
             "node": {
-              "name": "Public Consulting Group"
+              "name": "Public Consulting Group",
+              "avatarURL": "https://avatars1.githubusercontent.com/u/22034785?v=3"
             }
           }
         ]
@@ -378,8 +383,18 @@ const data =  {
   }
 }
 
-
-function removeNesting({avatarURL, bio, company, email, location, name, websiteURL, followers, organizations, following}) {
+function removeNesting({
+  avatarURL,
+  bio,
+  company,
+  email,
+  location,
+  name,
+  websiteURL,
+  followers,
+  organizations,
+  following
+}) {
   return {
     avatarURL,
     bio,
