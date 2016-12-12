@@ -44,6 +44,7 @@ Install the dependencies and devDependencies and start the server.
 $ npm install
 $ npm start
 ```
-
+## ToDo
+* Add Pagination
 
 ![Imgur](http://i.imgur.com/4o2p9q6.gif)
