@@ -17,7 +17,7 @@ const style = {
   }
 }
 
-const OwnerPage = ({loading, followers, following, ...other}) => {
+const OwnerPage = ({setNavBarTitle, requestOwner, loading, followers, following, ...other}) => {
   if(loading) {
     return (
       <div style={style.root}>
@@ -32,9 +32,9 @@ const OwnerPage = ({loading, followers, following, ...other}) => {
           <Divider/>
           {/* <Organizations organizations={organizations}/> */}
           <Divider/>
-          <FollowList title='Followers' data={followers}/>
+          <FollowList title='Followers' data={followers} setNavBarTitle={setNavBarTitle} requestOwner={requestOwner}/>
           <Divider/>
-          <FollowList title='Following' data={following}/>
+          <FollowList title='Following' data={following} setNavBarTitle={setNavBarTitle} requestOwner={requestOwner}/>
         </Paper>
       </div>
     )
@@ -44,7 +44,9 @@ const OwnerPage = ({loading, followers, following, ...other}) => {
 OwnerPage.propTypes = {
   loading: PropTypes.bool.isRequired,
   followers: PropTypes.array.isRequired,
-  following: PropTypes.array.isRequired
+  following: PropTypes.array.isRequired,
+  setNavBarTitle: PropTypes.func.isRequired,
+  requestOwner: PropTypes.func.isRequired
 }
 
 export default OwnerPage

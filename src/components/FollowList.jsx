@@ -3,6 +3,7 @@ import {Card, CardHeader, CardMedia} from 'material-ui/Card'
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import Avatar from 'material-ui/Avatar'
+import {browserHistory} from 'react-router'
 
 const style = {
   avatar: {
@@ -27,19 +28,29 @@ const style = {
   }
 }
 
-const AvatarList = ({data}) => (
-  <div>
-    {
-      data.map(item => (
-        <IconButton tooltip={item.name + ' aka ' + item.login} key={item.login}>
-          <Avatar src={item.avatarURL} backgroundColor='none'/>
-        </IconButton>
-      ))
-    }
-  </div>
-)
+const AvatarList = ({data, requestOwner, setNavBarTitle}) => {
 
-const FollowList = ({title, data}) => (
+  const handleClick = (login) => {
+    requestOwner(login).then(data => {
+      browserHistory.push(`/${login}`)
+      setNavBarTitle(login)
+    })
+  }
+
+  return (
+    <div>
+      {
+        data.map(item => (
+          <IconButton tooltip={item.name + ' aka ' + item.login} key={item.login} onTouchTap={handleClick.bind(this, item.login)}>
+            <Avatar src={item.avatarURL} backgroundColor='none'/>
+          </IconButton>
+        ))
+      }
+    </div>
+  )
+}
+
+const FollowList = ({title, data, requestOwner, setNavBarTitle}) => (
   <div style={style.root}>
     <Card style={style.card}>
       <CardHeader
@@ -50,7 +61,7 @@ const FollowList = ({title, data}) => (
       />
       <CardMedia expandable={true} style={style.cardMedia}>
         <Paper zDepth={2} style={style.paper} >
-          <AvatarList data={data}/>
+          <AvatarList data={data} setNavBarTitle={setNavBarTitle} requestOwner={requestOwner}/>
         </Paper>
       </CardMedia>
     </Card>
@@ -63,6 +74,8 @@ const FollowList = ({title, data}) => (
 FollowList.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  setNavBarTitle: PropTypes.func.isRequired,
+  requestOwner: PropTypes.func.isRequired
 }
 
 export default FollowList
