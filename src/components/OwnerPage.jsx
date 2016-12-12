@@ -2,13 +2,12 @@ import React, {PropTypes} from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
-import Organizations from './Organizations'
+// import Organizations from './Organizations'
 import FollowList from './FollowList'
 import OwnerContent from './OwnerContent'
 
-
-
-import data from '../queries/dummyData'
+// TODO: organizations query does not work
+// https://platform.github.community/t/token-has-not-been-granted-the-required-scopes-to-execute-this-query/881
 
 const style = {
   root: {
@@ -18,9 +17,7 @@ const style = {
   }
 }
 
-const OwnerPage = ({loading}) => {
-  const {followers, organizations, following} = data
-
+const OwnerPage = ({loading, followers, following, ...other}) => {
   if(loading) {
     return (
       <div style={style.root}>
@@ -31,9 +28,9 @@ const OwnerPage = ({loading}) => {
     return (
       <div style={style.root}>
         <Paper zDepth={2}>
-          <OwnerContent {...data}/>
+          <OwnerContent {...other}/>
           <Divider/>
-          <Organizations organizations={organizations}/>
+          {/* <Organizations organizations={organizations}/> */}
           <Divider/>
           <FollowList title='Followers' data={followers}/>
           <Divider/>
@@ -45,6 +42,9 @@ const OwnerPage = ({loading}) => {
 }
 
 OwnerPage.propTypes = {
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  followers: PropTypes.array.isRequired,
+  following: PropTypes.array.isRequired
 }
+
 export default OwnerPage

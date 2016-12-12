@@ -17,7 +17,7 @@ const initialState = {
   websiteURL: '',
   login: '',
   followers: [{name: '', login: '', avatarURL: ''}],
-  organizations: [{name: '', avatarURL: ''}],
+  // organizations: [{name: '', avatarURL: ''}],
   following: [{name: '', login: '', avatarURL: ''}]
 }
 
@@ -75,7 +75,7 @@ function removeNesting({
     websiteURL,
     login,
     followers: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))],
-    organizations: [...organizations.edges.map(ele => ({name: ele.node.name, avatarURL: ele.node.avatarURL}))],
+    // organizations: [...organizations.edges.map(ele => ({name: ele.node.name, avatarURL: ele.node.avatarURL}))],
     following: [...followers.edges.map(ele => ({name: ele.node.name, login: ele.node.login, avatarURL: ele.node.avatarURL}))]
   }
 }

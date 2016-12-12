@@ -51,6 +51,13 @@ const OwnerContent = ({login, avatarURL, bio, company, email, location, name, we
 
 
 OwnerContent.propTypes = {
+  avatarURL: PropTypes.string.isRequired,
+  bio: PropTypes.string,
+  company: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  websiteURL: PropTypes.string.isRequired,
   login: PropTypes.string.isRequired
 }
 

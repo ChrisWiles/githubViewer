@@ -91,6 +91,7 @@ const GET_OWNER_INFO = gql `
         location
         name
         websiteURL
+        login
         followers(first: 30) {
           edges {
             node {
@@ -100,15 +101,15 @@ const GET_OWNER_INFO = gql `
             }
           }
         }
-        organizations(first: 30) {
-          totalCount
-          edges {
-            node {
-              name
-              avatarURL
-            }
-          }
-        }
+        # organizations(first: 30) {
+        #   totalCount
+        #   edges {
+        #     node {
+        #       name
+        #       avatarURL
+        #     }
+        #   }
+        # }
         following(first: 30) {
           edges {
             node {
