@@ -92,6 +92,7 @@ const GET_OWNER_INFO = gql `
         name
         websiteURL
         login
+        createdAt
         followers(first: 30) {
           edges {
             node {
