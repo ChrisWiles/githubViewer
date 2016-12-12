@@ -1,5 +1,8 @@
 # Github Viewer
 
+#### Requires Early Access to use GitHub’s GraphQL
+[Early Access](https://developer.github.com/early-access/)
+
 Uses Apollo to connect the client with GitHub’s GraphQL. The queries are saved into the redux store and the UI is rendered with React and Material UI components.
 
 See Live [Github Viewer](https://chriswiles.github.io/githubViewer)
