@@ -55,7 +55,7 @@ const CommitsList = ({commits, setNavBarTitle, requestOwner}) => {
             {`${commit.login} <${commit.email}> commited ${moment(commit.date).fromNow()}`}
           </div>
           <div style={style.msg}>
-            {commit.message}
+            {commit.message.split('\n').map((line, i) => <p key={i}>{line}</p>)}
           </div>
         </div>
       <Divider/>
