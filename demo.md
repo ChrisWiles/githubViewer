@@ -94,9 +94,10 @@ Reusable UI Components
 
 ## Flow 
 ```
-	// User searches 'facebook'
+    // User searches 'facebook'
+
     SearchBar.jsx (Smart) -> Fire Actions  {
-      requestReposNames() => Redux Thunk (async) -> REPO_OWNER_REQUEST -> repoReducer.js (pure) -> update UI State 
+      requestReposNames() => Redux Thunk (async) -> REPO_OWNER_REQUEST -> repoReducer.js (pure function) -> update UI State 
           Redux Thunk (pass) -> REPO_OWNER_SUCCESS -> update UI State 
           Redux Thunk (fail) -> REPO_OWNER_FAILURE -> update UI State 
         
@@ -110,7 +111,7 @@ Reusable UI Components
     // User selects 'react'
 
     SearchBar(Smart) -> Fire Actions {
-      requestRepoInfo() => Redux Thunk (async) -> REPO_NAME_REQUEST -> repoReducer.js -> update UI State
+      requestRepoInfo() => Redux Thunk (async) -> REPO_NAME_REQUEST -> repoReducer.js (pure function) -> update UI State
           Redux Thunk (pass) -> REPO_NAME_SUCCESS -> update UI State
           Redux Thunk (fail) -> REPO_NAME_FAILURE -> update UI State 
             
@@ -124,8 +125,8 @@ Reusable UI Components
         setNavBarTitle() => NAVBAR_TITLE -> UIReducer.js -> update UI State
         resetSearch() => RESET_SEARCH -> UIReducer.js -> update UI State
     }
-  ```
-   ## RepositoryPage.jsx
+ ```
+## RepositoryPage.jsx
  ```javascript
     const style = {
       root: {
@@ -189,7 +190,7 @@ Reusable UI Components
      }
     }
  ```
- ## CommitsList.jsx
+## CommitsList.jsx
  ```javascript
      const style = {
       root: {
@@ -268,7 +269,7 @@ Reusable UI Components
       }
     )(RepositoryPage)
  ```
- ## loginReducer.js
+## loginReducer.js
  ```javascript
     const initialState = {
       isLoggedIn: false,
@@ -303,7 +304,7 @@ Reusable UI Components
     }
   ```
   
-  ## repoActions.js
+## repoActions.js
   ```javascript
     export const requestReposNames = (login) => {
       return dispatch => {
@@ -377,7 +378,7 @@ Reusable UI Components
       }
     `
  ```
- ## darkTheme.js
+## darkTheme.js
  ```javascript
         {
             "spacing": {
