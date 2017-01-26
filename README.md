@@ -44,3 +44,56 @@ $ npm start
 * Add Pagination
 
 ![Imgur](http://i.imgur.com/4o2p9q6.gif)
+
+      |   createApolloClient.js
+      |   darkTheme.js
+      |   index.css
+      |   index.js
+      |   material_ui_raw_theme_file.jsx
+      |   reactLinksData.js
+      |   README.md
+      |   routes.js
+      |   
+      +---actionCreators
+      |       contactSnackbarActions.js
+      |       loginActions.js
+      |       ownerActions.js
+      |       repoActions.js
+      |       UIActions.js
+      |       
+      +---components
+      |       App.jsx
+      |       CommitsList.jsx
+      |       ContactSnackbar.jsx
+      |       FollowList.jsx
+      |       GitHubIcon.jsx
+      |       Login.jsx
+      |       NavBar.jsx
+      |       Organizations.jsx
+      |       OwnerContent.jsx
+      |       OwnerPage.jsx
+      |       RepositoryPage.jsx
+      |       SearchBar.jsx
+      |       SlideDrawer.jsx
+      |       SlideDrawerMenu.jsx
+      |       
+      +---constants
+      |       actionTypes.js
+      |       
+      +---containers
+      |       SmartApp.js
+      |       SmartOwnerPage.js
+      |       SmartRepositoryPage.js
+      |       SmartSearchBar.js
+      |       
+      +---queries
+      |       index.js
+      |       
+      \---reducers
+            contactSnackbarReducer.js
+            index.js
+            loginReducer.js
+            ownerReducer.js
+            repoReducer.js
+            UIReducer.js
+
