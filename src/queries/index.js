@@ -61,9 +61,7 @@ const GET_REPO_INFO = gql `
                         node {
                           body
                           author {
-                            name
                             avatarURL
-                            email
                             login
                           }
                         }
