@@ -1,3 +1,4 @@
+# Currently query for new repos doesn't work, GitHub changed their GraphQL API and the app hasn't been updated
 # Github Viewer
 
 #### Requires Early Access to use GitHub’s GraphQL
